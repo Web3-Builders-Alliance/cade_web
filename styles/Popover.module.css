@@ -1,0 +1,33 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Styles for the popover content */
+.content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  z-index: 1;
+}
+
+/* Styles for the popover arrow */
+.arrow {
+  background-color: black;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #f1f1f1;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.container:hover .content {
+  display: block;
+}

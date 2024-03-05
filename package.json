@@ -1,0 +1,41 @@
+{
+  "name": "cade",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.28.1-beta.2",
+    "@glidejs/glide": "^3.6.0",
+    "@project-serum/anchor": "^0.26.0",
+    "@solana/spl-token": "^0.3.7",
+    "@solana/wallet-adapter-base": "^0.9.20",
+    "@solana/wallet-adapter-react": "^0.15.28",
+    "@solana/wallet-adapter-react-ui": "^0.9.27",
+    "@solana/wallet-adapter-wallets": "^0.19.10",
+    "@solana/web3.js": "^1.73.0",
+    "bs58": "^5.0.0",
+    "next": "13.5.1",
+    "react": "18.2.0",
+    "react-confetti-explosion": "^2.1.2",
+    "react-dom": "18.2.0",
+    "react-easy-swipe": "^0.0.23",
+    "react-icons": "^4.7.1",
+    "react-scroll": "^1.8.9",
+    "react-toastify": "^9.1.1",
+    "sass": "^1.69.5"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "@types/react": "18.2.45",
+    "autoprefixer": "^10.4.15",
+    "eslint": "8.31.0",
+    "eslint-config-next": "13.1.1",
+    "postcss": "^8.4.28",
+    "tailwindcss": "^3.3.3"
+  }
+}
