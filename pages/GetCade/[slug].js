@@ -30,7 +30,7 @@ const GetCade = ({ network }) => {
             setNetworkPageLink("http://localhost:3000/GetCade/Mainnet")
         }
 
-    }, [publicKey, userPublicKey , network])
+    }, [publicKey, userPublicKey, network])
 
     const buyCadeData = [
         {
@@ -117,12 +117,12 @@ const GetCade = ({ network }) => {
                                 <img className="w-52 h-52 lg:h-72 lg:w-72" src="/c9.png" alt="arcademacine" />
                                 <img className="w-52 h-52 lg:h-72 lg:w-72" src="/c2.png" alt="arcademacine" />
                             </div>
-                            
+
                             <div className="flex flex-row">
                                 <img className="lg:p-3 p-2 w-1/3 h-36 lg:h-52" src="/cadenew.png" alt="" />
                                 <img className="lg:p-3 p-2 w-1/3 h-36 lg:h-52" src="/cade.png" alt="" />
                                 <img className="lg:p-3 p-2 w-1/3 h-36 lg:h-52" src="/cadep.webp" alt="" />
-                               
+
                             </div>
                             <div className="flex flex-row mb-5">
                                 <div className="flex w-1/4 justify-center">
@@ -142,11 +142,11 @@ const GetCade = ({ network }) => {
                                 </div>
                                 <div className="flex w-1/4 justify-center">
                                     <h2 className="underline text-cyan-400 font-abc text-4xl lg:text-5xl px-10 mb-1 font-medium title-font">
-                                       Have FUN.
+                                        Have FUN.
                                     </h2>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                         <div style={{ height: "1100px" }} className="relative border-4 rounded-xl border-white bg-black flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0 overflow-x-hidden overflow-y-hidden">

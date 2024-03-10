@@ -9,8 +9,6 @@ const Onboarding = () => {
     <>
 
       <div class="relative flex flex-col min-h-screen bg-[url('/brickwall.jpg')]">
-
-
         <div id="first" class="h-1/4 flex flex-row bg-gradient-to-r from-red-950 via-yellow-100 to-red-950">
           <div class="ml-10 hidden lg:block">
             <div class="relative">

@@ -235,7 +235,7 @@ const Games = ({
             <GamesAdditionalDetails />
             <section className="text-gray-600 body-font relative ">
               <div className=" justify-center gap-x-5 container px-2 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
-                <div className="mt-2">
+                {/* <div className="mt-2">
                   <div className="p-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
                     <div>
                       <GameLeaderBoard />
@@ -244,7 +244,7 @@ const Games = ({
                       <GameForum />
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <DifferentGameSection sectionName={"Play More"} UnityGameData={PlayMoreData} spotlight={"bluespotlight"}/>
             </section>
