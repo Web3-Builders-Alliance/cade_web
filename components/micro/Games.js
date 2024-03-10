@@ -53,7 +53,7 @@ const Games = () => {
         All Games🔥
       </h1>
 
-      <div className="bg-[url('/brickwall.jpg')] rounded-xl border-4 border-yellow-300">
+      <div style={{backgroundColor : "#191414" , borderColor:"yellow",borderWidth: 3, borderRadius:5}} >
         <div className="p-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
           {Data.map((item , key) => {
 
@@ -64,7 +64,7 @@ const Games = () => {
                   <div className="flex justify-center">
                     <div className="relative h-40 w-72 mb-3 bg-transparent flex items-center justify-center">
                       {/* Rectangle */}
-                      <div className="mt-3 flex flex-row justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-sm border-4 border-white bg-black">
+                      <div className="mt-3 flex flex-row justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-lg border-2 border-white bg-black">
                         <div className={`m-5 w-1/2 h-24 flex justify-center items-center bg-${item.color}-500 rounded-lg`}>
                           <h1 className='text-6xl font-abc text-yellow-300'>{key+1}</h1>
                         </div>
@@ -116,7 +116,7 @@ const Games = () => {
                     </Link>
                   </div>
                   <div className="mt-5">
-                    <div className="block max-w-sm p-6 rounded-lg shadow bg-gray-950 hover:bg-gray-700 border-2 border-white">
+                    <div className="block max-w-sm p-6 rounded-lg shadow bg-gray-950 hover:bg-gray-700">
                       <p className="text-3xl font-abc text-gray-400">
                         {item.desc}
                       </p>

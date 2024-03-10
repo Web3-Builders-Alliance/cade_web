@@ -99,7 +99,7 @@ const CadeStore = () => {
 
                 <div className='relative'>
                     <div className='relative w-72 lg:w-80 h-32 bg-blue-900 rounded-b-lg'>
-                        <div className='mb-10 flex flex-col justify-center items-center h-full'>
+                        <div className='mb-10 flex flex-col items-center bg-red-500 w-full absolute top-1/2'>
                             <h1 className='font-abc text-white text-5xl'>
                                 Prize Center
                             </h1>
