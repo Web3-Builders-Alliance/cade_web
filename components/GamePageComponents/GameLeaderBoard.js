@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { BiSolidUpArrow, BiSolidDownArrow } from "react-icons/bi";
-const GameLeaderBoard = () => {
+const GameLeaderBoard = ({ showPlayerRank }) => {
     return (
         <>
 
@@ -51,25 +51,31 @@ const GameLeaderBoard = () => {
 
                         </div>
                     </li>
+                    {showPlayerRank ? (
+                        <>
+                            <li class="pt-3 pb-0 mt-5">
+                                <h1 className='text-3xl text-white font-abc'>Your Ranking</h1>
+                                <div class="flex items-center mt-2">
+                                    <FaUserCircle className='text-3xl text-yellow-300' />
+                                    <div class="flex-1 min-w-0 ms-4">
+                                        <p class="text-2xl font-abc  truncate text-white">
+                                            Thomes Lean
+                                        </p>
+                                        <p class="font-abc text-xl truncate text-gray-400">
+                                            Position - 23
+                                        </p>
+                                    </div>
+                                    <div class="gap-2 flex flex-row items-center text-base font-semibold text-white">
+                                        <BiSolidDownArrow className="text-red-400 text-2xl" />
+                                        9 XP
+                                    </div>
+                                </div>
+                            </li>
 
-                    {/* <li class="pt-3 pb-0 mt-5">
-                        <h1 className='text-3xl text-white font-abc'>Your Ranking</h1>
-                        <div class="flex items-center mt-2">
-                            <FaUserCircle className='text-3xl text-yellow-300' />
-                            <div class="flex-1 min-w-0 ms-4">
-                                <p class="text-2xl font-abc  truncate text-white">
-                                    Thomes Lean
-                                </p>
-                                <p class="font-abc text-xl truncate text-gray-400">
-                                    Position - 23
-                                </p>
-                            </div>
-                            <div class="gap-2 flex flex-row items-center text-base font-semibold text-white">
-                                <BiSolidDownArrow className="text-red-400 text-2xl" />
-                                9 XP
-                            </div>
-                        </div>
-                    </li> */}
+                        </>
+                    ) : (
+                        <></>
+                    )}
 
                 </ul>
             </div>

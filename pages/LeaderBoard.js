@@ -9,13 +9,13 @@ const LeaderBoard = () => {
                     <div className='absolute left-0'>
                         <img className='h-40 w-28 ml-5' src='/pipe.png' alt='pipe' />
                         <div className="left-0 translate-x-10 top-1/4 -translate-y-24 rounded-xl" style={{ height: 350, width: 280, backgroundColor: "white", borderWidth: 10, borderColor: "white ", background: "#191414" }}>
-                            <GameLeaderBoard />
+                            <GameLeaderBoard  showPlayerRank={false}/>
                         </div>
                     </div>
                     <div className='absolute left-1/4'>
                         <img className='h-40 w-28 ml-5' src='/pipe.png' alt='pipe' />
                         <div className="left-0 translate-x-10 top-1/4 -translate-y-24 rounded-xl" style={{ height: 350, width: 280, backgroundColor: "white", borderWidth: 10, borderColor: "white ", background: "#191414" }}>
-                            <GameLeaderBoard />
+                            <GameLeaderBoard showPlayerRank={false}/>
                         </div>
                     </div>
                     <div className='absolute left-1/2'>
@@ -27,13 +27,13 @@ const LeaderBoard = () => {
                     <div className='absolute right-0 -translate-x-1/2'>
                         <img className='h-40 w-28 ml-20' src='/pipe.png' alt='pipe' />
                         <div className="translate-x-1/3 top-1/4 -translate-y-24 rounded-xl" style={{ height: 350, width: 280, backgroundColor: "white", borderWidth: 10, borderColor: "white ", background: "#191414" }}>
-                            <GameLeaderBoard />
+                            <GameLeaderBoard showPlayerRank={false}/>
                         </div>
                     </div>
                 </div>
                 {/* //bottom Part */}
                 <div style={{ height: 350, width: 300, backgroundColor: "white", borderWidth: 10, borderColor: "white ", background: "#191414" }} className='z-10 absolute top-1/2 translate-x-10 translate-y-1/4'>
-                    <GameLeaderBoard />
+                    <GameLeaderBoard showPlayerRank={false}/>
                 </div>
                 <div className='absolute top-1/2 left-1/4 -translate-x-1/2 translate-y-1/2 rotate-90'>
                     <img style={{height:350}} className='w-28 ml-5' src='/pipe.png' alt='pipe' />
@@ -66,7 +66,7 @@ const LeaderBoard = () => {
                     <img style={{height:350}} className='w-28 ml-5' src='/pipe.png' alt='pipe' />
                 </div>
                 <div style={{ height: 350, width: 300, backgroundColor: "white", borderWidth: 10, borderColor: "white ", background: "#191414" }} className='z-10 absolute right-0 top-1/2 -translate-x-10 translate-y-1/4'>
-                    <GameLeaderBoard />
+                    <GameLeaderBoard showPlayerRank={false}/>
                 </div>
                 {/* //bottom Part */}
             </div>

@@ -213,7 +213,7 @@ const Games = ({
                       <DisplayBoard slug={slug} machineNumber={data.responce.machineNumber} color={data.responce.color} />
                       <div className="flex justify-center mt-2 hidden lg:block xl:block">
                         <div
-                          className="cursor-pointer text-white font-abc bg-gray-950 px-16 focus:outline-none rounded text-3xl border-2 rounded-lg border-white"
+                          className="cursor-pointer text-white font-abc bg-gray-950 px-16 focus:outline-none rounded text-3xl border-2  border-white"
                           onClick={() => setOpen(true)}
                         >
                           Play Now
@@ -221,14 +221,14 @@ const Games = ({
                         </div>
                       </div>
                       <img className="w-96 h-96 rounded-xl mt-2" src={data.responce.arcadeMachineImage} alt="" />
-                      
+
                     </div>
                     <div className="">
                       <div className="absolute left-1/2 translate-x-20">
                         <img className="h-40 w-28 items-center flex" src="/pipe.png" alt="pipe" />
                       </div>
                       <div className="absolute left-1/2 translate-x-1/4 top-1/4 -translate-y-16 rounded-xl" style={{ height: 500, width: 350, backgroundColor: "white", borderWidth: 10, borderColor: "white ", background: "#191414" }}>
-                        <GameLeaderBoard />
+                        <GameLeaderBoard showPlayerRank={true} />
                       </div>
                     </div>
                   </div>

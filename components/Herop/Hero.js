@@ -11,9 +11,10 @@ import UpcomingGames from "./UpcomingGames";
 import Footer from "../Footer/Footer";
 import CadeStore from "./CadeStore";
 import CadeCard from "./CadeCard";
-import { UnityGameData , OnChainGameData } from "../Data/data";
+import { UnityGameData, OnChainGameData } from "../Data/data";
 import { useAvatarProgram } from '../../connector/avatar'
 import DifferentGameSection from "../DifferentGameSection/DifferentGameSection";
+import RandomGame from "../RandomGame";
 
 const Hero = () => {
   const { publicKey } = useWallet()
@@ -37,9 +38,10 @@ const Hero = () => {
             <section className="text-gray-400 rounded-xl body-font mt-5 ">
               <div className="container px-5 py-5">
                 <div className="flex flex-col justify-center -m-5 lg:gap-10 ">
-                  <DifferentGameSection sectionName={"Unity Games"} UnityGameData={UnityGameData} spotlight={"bluespotlight"}/>
+                  <DifferentGameSection sectionName={"Unity Games"} UnityGameData={UnityGameData} spotlight={"bluespotlight"} />
                   <DifferentGameSection sectionName={"Onchain Games"} UnityGameData={OnChainGameData} spotlight={"redspotlight"} />
                   <Games />
+                  <RandomGame />
                   <CadeStore />
                   <UpcomingGames />
                 </div>
