@@ -175,26 +175,28 @@ const Games = ({
               {show ? (
                 <>
                   <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-5 bg-[url('/brickwall.jpg')]">
+                    <div className="flex justify-center relative">
+                      <div className="absolute left-1/2 -translate-x-1/2">
+                        <img className="h-20 w-28 items-center flex" src="/pipe.png" alt="pipe" />
+                      </div>
+                      <div className=" mt-20 rounded-xl" style={{ height: 500, width: 350, backgroundColor: "white", borderWidth: 10, borderColor: "white ", background: "#191414" }}>
+                        <GameLeaderBoard showPlayerRank={true} />
+                      </div>
+                    </div>
                     <div className="flex flex-col items-center justify-center bg-transparent  rounded-b-xl h-max mt-2">
                       <DisplayBoard slug={slug} machineNumber={data.responce.machineNumber} color={data.responce.color} />
-                      <img className="w-96 h-96" src={data.responce.arcadeMachineImage} alt="" />
                       <div className="flex justify-center mt-5 block lg:hidden xl:hidden">
                         <div
-                          className="mt-5 py-4 text-black flex justify-center font-abc bg-white px-6 focus:outline-none rounded text-2xl border-4 border-black"
-                          onClick={() => playGameForMobile()}
+                          className="cursor-pointer text-white font-abc bg-gray-950 px-16 focus:outline-none rounded text-3xl border-2  border-white"
+                          onClick={() => setOpen(true)}
                         >
-                          Insert Your Card To Play
-                          <span className="flex justify-center ml-2 mt-1"><FaArrowDown /></span>
+                          Play Now
+                          <span className="flex justify-center mt-2 "><IoGameController className="text-green-400 text-3xl" /></span>
                         </div>
                       </div>
+                      <img className="w-96 h-96 mt-2" src={data.responce.arcadeMachineImage} alt="" />
                     </div>
-                    <div className="mt-5 flex justify-center items-center overflow-x-auto">
-                      <div>
-                        <div className='mt-5 flex justify-center'>
-                          <CadeCardMachine color={data.responce.color} margin={margin} heading={heading} blinkingLightColor={blinkingLightColor} insertCadeCard={insertCadeCard} takeOutCard={takeOutCard} ableToPlay={ableToPlay} playFunction={playGameForMobile} />
-                        </div>
-                      </div>
-                    </div>
+
                   </div>
                 </>
               ) : (
