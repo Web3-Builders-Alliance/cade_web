@@ -18,7 +18,7 @@ export const WalletConnectProvider = ({ children }) => {
 
   const endpoint = useMemo(() => {
     if (network === WalletAdapterNetwork.Devnet) {
-      return `https://delicate-frequent-dinghy.solana-devnet.discover.quiknode.pro/d398eb2a017f1c06c1fa5e9e82ed1dc8b17018f5/`;
+      return `https://frosty-smart-smoke.solana-devnet.quiknode.pro/011aa36eee4c55c5bd8b2290980d614e2fc2c171/`;
     }
 
     return clusterApiUrl(network);

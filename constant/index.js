@@ -20,3 +20,8 @@ export const AVATAR_PROGRAM_PROGRAM_ID = new PublicKey(
   "DvHrJkoqWKkhVu5tyejSc8wXv4qaNYRhYnpHXDtCxWCT"
 );
 
+export const ECONOMY_PROGRAM_ID = new PublicKey(
+  "F7hRE5ZrgzpGngTEomD2viiSwDj5EcMSd8FfFuvwDZLL"
+);
+
+
