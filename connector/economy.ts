@@ -132,7 +132,7 @@ export function useCadeEconomy() {
             auth,
             newAuth: new_auth,
             user: publicKey,
-            user2: initializer2.publicKey,
+            user2: publicKey,
             mintX: mint_x,
             mintLp: mint_lp,
             userVaultX: initializer_x_ata,
@@ -146,9 +146,7 @@ export function useCadeEconomy() {
             associatedTokenProgram: ASSOCIATED_PROGRAM_ID,
             systemProgram: SystemProgram.programId,
           })
-          .signers([initializer, initializer2])
           .rpc({ skipPreflight: true });
-
         await confirmTx(tx);
       } catch (error) {
         console.log(error);
