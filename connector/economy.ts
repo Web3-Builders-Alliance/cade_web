@@ -52,54 +52,58 @@ export function useCadeEconomy() {
   const new_auth = new PublicKey(
     "5wuuXg4kujcfpLe8w3jG1HuKZcFwPTWQSTbczjm1gudr"
   );
-  const config = new PublicKey("BBzDp69sWrMiVmnbk9EVTrpdQK15ZGQUvFzoB92P37RB");
+  const config = new PublicKey("64AXM8E2RqshGbZhJwE7AsUmQi8p8B7tZXdWCJzzMJTX");
   const lp_config = new PublicKey(
-    "7AdXwiXPe4i4BXodFKUMnkLHt6KVqyyMucuhrVWf5tC4"
+    "2j4AQGadQmzDZfzMieMR8sRABgVtuvrg4RVjyi8jtud9"
   );
 
-  const mint_x = new PublicKey("DExRpeK5QALxKq5HqGuFsxYGsmHMkLJPymo76orfi7Xu");
+  const mint_x = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr");
   const mint_lp = PublicKey.findProgramAddressSync(
     [Buffer.from("lp"), config.toBuffer()],
     new PublicKey("F7hRE5ZrgzpGngTEomD2viiSwDj5EcMSd8FfFuvwDZLL")
   )[0];
 
   const createATA = async () => {
-    initializer_x_ata = await getAssociatedTokenAddress(
-      mint_x,
-      publicKey,
-      false,
-      TOKEN_PROGRAM_ID
-    );
-    initializer_lp_ata = await getAssociatedTokenAddress(
-      mint_lp,
-      publicKey,
-      false,
-      TOKEN_PROGRAM_ID
-    );
-    vault_x_ata = await getAssociatedTokenAddress(
-      mint_x,
-      auth,
-      true,
-      TOKEN_PROGRAM_ID
-    );
-    vault_y_ata = await getAssociatedTokenAddress(
-      mint_x,
-      new_auth,
-      true,
-      TOKEN_PROGRAM_ID
-    );
-    vault_lp_ata = await getAssociatedTokenAddress(
-      mint_lp,
-      auth,
-      true,
-      TOKEN_PROGRAM_ID
-    );
-    console.log((initializer_x_ata).toBase58());
-    console.log((initializer_lp_ata).toBase58());
-    console.log((vault_x_ata).toBase58());
-    console.log((vault_y_ata).toBase58());
-    console.log((vault_lp_ata).toBase58());
-    console.log(mint_lp.toBase58());
+    try {
+      initializer_x_ata = await getAssociatedTokenAddress(
+        mint_x,
+        publicKey,
+        false,
+        TOKEN_PROGRAM_ID
+      );
+      initializer_lp_ata = await getAssociatedTokenAddress(
+        mint_lp,
+        publicKey,
+        false,
+        TOKEN_PROGRAM_ID
+      );
+      vault_x_ata = await getAssociatedTokenAddress(
+        mint_x,
+        auth,
+        true,
+        TOKEN_PROGRAM_ID
+      );
+      vault_y_ata = await getAssociatedTokenAddress(
+        mint_x,
+        new_auth,
+        true,
+        TOKEN_PROGRAM_ID
+      );
+      vault_lp_ata = await getAssociatedTokenAddress(
+        mint_lp,
+        auth,
+        true,
+        TOKEN_PROGRAM_ID
+      );
+      console.log(initializer_x_ata.toBase58());
+      console.log(initializer_lp_ata.toBase58());
+      console.log(vault_x_ata.toBase58());
+      console.log(vault_y_ata.toBase58());
+      console.log(vault_lp_ata.toBase58());
+      console.log(mint_lp.toBase58());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const confirmTx = async (signature: string) => {
@@ -118,7 +122,7 @@ export function useCadeEconomy() {
   const swap = async () => {
     if (program && publicKey) {
       try {
-        await createATA()
+        await createATA();
         const tx = await program.methods
           .swap(
             new BN(5_000_000),
