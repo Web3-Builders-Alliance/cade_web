@@ -81,23 +81,6 @@ const Games = ({
     }
   }
 
-  // //choose the screen size 
-  // const handleResize = () => {
-  //   if (window.innerWidth < 835) {
-  //     setIsMobile(true)
-  //     console.log("Mobile")
-  //     console.log(window.innerWidth)
-  //   } else {
-  //     setIsMobile(false)
-  //     console.log("Not Mobile")
-  //   }
-  // }
-
-  // // create an event listener
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleResize)
-  // }, [])
-
   const playGameForMobile = () => {
     setshow(!show)
     setTimeout(() => {
