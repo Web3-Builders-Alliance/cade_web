@@ -15,6 +15,7 @@ import {
 import { faker, tr } from "@faker-js/faker";
 import { wallet, wallet_two, wallet_three } from "../wallet/wallet";
 import {
+  ASSOCIATED_TOKEN_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
   getAssociatedTokenAddress,
   getOrCreateAssociatedTokenAccount,
@@ -38,8 +39,6 @@ export function useCadeEconomy() {
     }
   }, [connection, anchorWallet]);
 
-  const initializer = Keypair.fromSecretKey(bs58.decode(wallet));
-  const initializer2 = Keypair.fromSecretKey(bs58.decode(wallet_two));
   const gamer_vault = Keypair.fromSecretKey(bs58.decode(wallet_three));
 
   let initializer_x_ata: PublicKey;
@@ -47,6 +46,7 @@ export function useCadeEconomy() {
   let vault_x_ata: PublicKey;
   let vault_y_ata: PublicKey;
   let vault_lp_ata: PublicKey;
+  let indie_gamer_x_ata: PublicKey;
   let indie_gamer_vault: PublicKey;
 
   const auth = new PublicKey("4ckfssJg39q744jWED8vq43UQzvo4Xn5nTad9iLw4eJ6");
@@ -102,6 +102,13 @@ export function useCadeEconomy() {
         false,
         TOKEN_PROGRAM_ID
       );
+      indie_gamer_x_ata = await getAssociatedTokenAddress(
+        mint_x,
+        gamer_vault.publicKey,
+        false,
+        TOKEN_PROGRAM_ID
+      );
+
       console.log(initializer_x_ata.toBase58());
       console.log(initializer_lp_ata.toBase58());
       console.log(vault_x_ata.toBase58());
@@ -191,8 +198,42 @@ export function useCadeEconomy() {
       }
     }
   };
+
+  const claim_usdc = async () => {
+    try {
+      if (program && publicKey) {
+        await createATA()
+        const tx = await program.methods
+          .claimUsdcForCade()
+          .accounts({
+            auth,
+            newAuth: new_auth,
+            user: publicKey,
+            user2: publicKey,
+            gamer: gamer_vault.publicKey,
+            mintX: mint_x,
+            mintLp: mint_lp,
+            vaultLp: vault_lp_ata,
+            vaultY: vault_y_ata,
+            gamerVaultLp: indie_gamer_vault,
+            gamerVaultX: indie_gamer_x_ata,
+            lpConfig: lp_config,
+            config,
+            tokenProgram: TOKEN_PROGRAM_ID,
+            associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
+            systemProgram: SystemProgram.programId,
+          })
+          .signers([gamer_vault])
+          .rpc({ skipPreflight: true });
+          await confirmTx(tx)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return {
     swap,
     pay_for_game,
+    claim_usdc
   };
 }
