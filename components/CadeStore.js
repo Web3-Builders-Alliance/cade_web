@@ -35,7 +35,7 @@ const CadeStore = () => {
                             <img class="h-40 w-28" src='pipe.png' alt='pole' />
                         </div>
                         <div class="absolute top-1/2 left-0">
-                            <WelcomeBoard message={"Redeem Your"} width={"60"} />
+                            <WelcomeBoard message={"Hot Prizes"} width={"60"} />
                         </div>
                     </div>
                 </div>

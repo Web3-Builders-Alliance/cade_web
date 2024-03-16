@@ -106,41 +106,120 @@ const GetCade = ({ network }) => {
 
     return (
         <>
-            <section className="min-h-screen flex justify-center text-gray-600 body-font overflow-x-hidden">
+            <section className="min-h-screen flex justify-center text-gray-600 body-font overflow-x-hidden bg-gradient-to-bl from-blue-950 via-black to-black">
                 <div className="p-10 flex justify-center">
                     <div className="rounded-xl  xl:p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-5 w-screen">
-                        <div id="first"  className="border-4 border-white rounded-xl bg-[url('/brickwall.jpg')]  flex flex-col md:ml-auto w-full h-max">
+                        <div id="first" className="border-4 border-white rounded-xl bg-[url('/brickwall.jpg')]  flex flex-col md:ml-auto w-full h-max">
                             <CadeStore />
 
                         </div>
-
-                        <div id="second" style={{ height: "1100px" }} className="relative border-4 rounded-xl border-white bg-black flex flex-col md:ml-auto w-full  overflow-x-hidden overflow-y-hidden">
-                            <div className="px-6 w-full absolute top-0 left-1/2 -translate-x-1/2 translate-y-10 text-white">
-                                <h1 className="text-6xl font-abc">
-                                    Buy Now
-                                </h1>
-                                <p className="w-full text-2xl text-yellow-400 lg:text-3xl font-abc mt-5">
-                                    {`Cade Token Will be delivered into your Cade Card that represent your wallet ->`}
-                                    <span className="ml-5 text-white underline">{userPublicKey}</span>
-                                </p>
-                                <Link href={networkPageLink}>
-                                    <p className="w-full text-2xl text-white lg:text-2xl font-abc mt-4 hover:text-blue-400 underline">
-                                        {networkHeading}
-                                    </p>
-                                </Link>
+                     
+                        <div id="second" className=" items-center border-4 rounded-xl border-white bg-gradient-to-bl from-blue-950 via-black to-black  flex flex-col md:ml-auto w-full  overflow-x-hidden overflow-y-hidden">
+                        <div className="">
+                        <h1 className="text-white font-abc text-5xl mt-5 underline">More Options</h1>
+                        </div>
+                            <div style={{ width: '80%', height: 160 }} className="mt-5 bg-gray-700 border-4 border-white rounded-md">
+                                <div className="flex items-center justify-center mt-5">
+                                <div className="m-2 rounded-full w-4 h-4 bg-green-500 animate-blink"></div>
+                                    <h1 className="text-yellow-300 text-4xl font-abc">
+                                        Selected Item Name - Cade Game Pass
+                                    </h1>
+                                </div>
+                                <div className="flex items-center justify-center mt-5 ml-2">
+                                    <h1 className="text-white text-2xl font-abc">
+                                        Description : Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                    </h1>
+                                </div>
                             </div>
-                            <div className="h-full flex flex-col  justify-center items-center">
-                                {buyCadeData.map((item, index) => {
-                                    if (currentIndex == index) {
-                                        return (
-                                            <>
-                                                <div className="absolute top-1/4 translate-y-5 lg:translate-y-0">
-                                                    <CardMachineForBuyUSDC img={item.img} heading={item.name} showNext={showNextItem} showPrevItem={showPrevItem} blinkingLightColor={blinkingLight} doTransactionWithUSDC={doTheTransactionWithUSDC} doTheTransactionWithBONK={doTheTransactionWithBONK} paymentMethod={paymentMethod} network={network} />
+
+                            <div className="p-10 text-gray-400 body-font">
+                                <div className="container px-5 py-2 mx-auto">
+                                    <div className="flex flex-wrap -m-4">
+                                        <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
+                                            <div className="h-full text-center">
+                                                <div className="flex justify-center">
+                                                    <img src="/cadenew.png" alt="CadeImage" />
                                                 </div>
-                                            </>
-                                        )
-                                    }
-                                })}
+                                                <p className="text-white  font-abc text-2xl">20x Cade Coins</p>
+                                            </div>
+                                            
+                                        </div>
+                                        <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
+                                            <div className="h-full text-center">
+                                                <div className="flex justify-center">
+                                                    <img src="/cadenew.png" alt="CadeImage" />
+                                                </div>
+                                                <p className="text-white  font-abc text-2xl">40x Cade Coins</p>
+                                            </div>
+                                            
+                                        </div>
+                                        <div className="lg:w-1/3 lg:mb-0 p-4">
+                                            <div className="h-full text-center">
+                                                <div className="flex justify-center">
+                                                    <img src="/cadenew.png" alt="CadeImage" />
+                                                </div>
+                                                <p className="text-white  font-abc text-2xl">60x Cade Coins</p>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="container px-5 py-10 mx-auto">
+                                    <div className="flex flex-wrap -m-4">
+                                        <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
+                                            <div className="h-full text-center">
+                                                <div className="flex justify-center">
+                                                    <div className="bg-black sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full  flex-shrink-0">
+                                                        <img
+                                                            height={100}
+                                                            width={100}
+                                                            className="mt-10 rounded-full"
+                                                            src="/heartr.png"
+                                                            alt="alt"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <p className="text-white  font-abc text-2xl">20x CadeLife</p>
+                                            </div>
+                                    
+                                        </div>
+                                        <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
+                                            <div className="h-full text-center">
+                                                <div className="flex justify-center">
+                                                    <div className="ng-black sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full  flex-shrink-0">
+                                                        <img
+                                                            height={100}
+                                                            width={100}
+                                                            className="mt-10 rounded-full"
+                                                            src="/heartr.png"
+                                                            alt="alt"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <p className="text-white  font-abc text-2xl">40x CadeLife</p>
+                                            </div>
+                                            
+                                        </div>
+                                        <div className="lg:w-1/3 lg:mb-0 p-4">
+                                            <div className="h-full text-center">
+                                                <div className="flex justify-center">
+                                                    <div className="ng-black sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full  flex-shrink-0">
+                                                        <img
+                                                            height={100}
+                                                            width={100}
+                                                            className="mt-10 rounded-full"
+                                                            src="/heartr.png"
+                                                            alt="alt"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <p className="text-white  font-abc text-2xl">60x CadeLife</p>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
