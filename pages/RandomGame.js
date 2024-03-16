@@ -60,12 +60,12 @@ const RandomGame = () => {
                         <div style={{ width: 100, height: 100, alignItems: "center" }} className='flex justify-center bg-red-500 border-4 border-white'>
                             <h1 className='font-abc text-white text-6xl'>1</h1>
                         </div>
-                        <div className='flex justify-center items-center bg-red-500'>
+                        <div className='flex justify-center items-center bg-red-500 border-4 border-white'>
                             <img src='/ca11.png' height={300} width={300} alt='' />
                         </div>
                     </div>
                     <div className='-rotate-12'>
-                        <div className='bg-yellow-400 flex justify-center'>
+                        <div className='bg-yellow-400 flex justify-center border-4 border-white'>
                             <img src='/ca22.png' height={300} width={300} alt='' />
                         </div>
                         <div style={{ width: 100, height: 100, alignItems: "center" }} className='flex justify-center bg-yellow-500 border-4 border-white'>
@@ -76,12 +76,12 @@ const RandomGame = () => {
                         <div style={{ width: 100, height: 100, alignItems: "center" }} className='flex justify-center bg-green-500 border-4 border-white'>
                             <h1 className='font-abc text-white text-6xl'>3</h1>
                         </div>
-                        <div className='bg-green-500 flex justify-center'>
+                        <div className='bg-green-500 flex justify-center border-4 border-white'>
                             <img src='/ca33.png' height={300} width={300} alt='' />
                         </div>
                     </div>
                     <div>
-                        <div className='bg-orange-500 flex justify-center'>
+                        <div className='bg-orange-500 flex justify-center border-4 border-white'>
                             <img src='/ca44.png' height={300} width={300} alt='' />
                         </div>
                         <div style={{ width: 100, height: 100, alignItems: "center" }} className='flex justify-center bg-orange-500 border-4 border-white'>
