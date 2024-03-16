@@ -47,6 +47,7 @@ export function useCadeEconomy() {
   let vault_x_ata: PublicKey;
   let vault_y_ata: PublicKey;
   let vault_lp_ata: PublicKey;
+  let indie_gamer_vault: PublicKey;
 
   const auth = new PublicKey("4ckfssJg39q744jWED8vq43UQzvo4Xn5nTad9iLw4eJ6");
   const new_auth = new PublicKey(
@@ -95,11 +96,18 @@ export function useCadeEconomy() {
         true,
         TOKEN_PROGRAM_ID
       );
+      indie_gamer_vault = await getAssociatedTokenAddress(
+        mint_lp,
+        gamer_vault.publicKey,
+        false,
+        TOKEN_PROGRAM_ID
+      );
       console.log(initializer_x_ata.toBase58());
       console.log(initializer_lp_ata.toBase58());
       console.log(vault_x_ata.toBase58());
       console.log(vault_y_ata.toBase58());
       console.log(vault_lp_ata.toBase58());
+      console.log(indie_gamer_vault.toBase58());
       console.log(mint_lp.toBase58());
     } catch (error) {
       console.log(error);
@@ -153,7 +161,38 @@ export function useCadeEconomy() {
       }
     }
   };
+
+  const pay_for_game = async () => {
+    if (program && publicKey) {
+      try {
+        await createATA();
+        const tx = await program.methods
+          .pay(new BN(1_000_000))
+          .accounts({
+            auth,
+            gamer: gamer_vault.publicKey,
+            user: publicKey,
+            mintLp: mint_lp,
+            gamerVaultLp: indie_gamer_vault,
+            userVaultLp: initializer_lp_ata,
+            config,
+            lpConfig: lp_config,
+            tokenProgram: TOKEN_PROGRAM_ID,
+            associatedTokenProgram: ASSOCIATED_PROGRAM_ID,
+            systemProgram: SystemProgram.programId,
+          })
+          .signers([gamer_vault])
+          .rpc({
+            skipPreflight: true,
+          });
+        await confirmTx(tx);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   return {
     swap,
+    pay_for_game,
   };
 }
