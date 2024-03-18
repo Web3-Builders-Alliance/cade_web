@@ -114,11 +114,35 @@ const GetCade = ({ network }) => {
 
                         </div>
 
-                        <div id="second" className=" items-center border-4 rounded-xl border-white bg-gradient-to-bl from-blue-950 via-black to-black  flex flex-col md:ml-auto w-full  overflow-x-hidden overflow-y-hidden">
-                            <div className="">
-                                <h1 className="text-white font-abc text-5xl mt-5 underline">More Options</h1>
+                        <div id="second" className="p-3 border-4 rounded-xl h-max border-white bg-gradient-to-bl from-blue-950 via-black to-black  flex flex-col md:ml-auto w-full  overflow-x-hidden overflow-y-hidden">
+                            <div className="flex justify-center">
+                                <h1 className="text-white font-abc text-4xl lg:text-5xl mt-5">Prize Details</h1>
                             </div>
+                            <div className="flex justify-center mt-5">
+                                <div className="items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10">
+                                    <div className="flex flex-col">
+                                        <div className="flex flex-col bg-gray-900 w-max mt-5 rounded-lg border-2 border-white">
+                                            <img src="/freeticket.webp" className="h-40 w-40 lg:h-60 lg:w-60" alt="prize" />
+                                        </div>
 
+                                    </div>
+                                    <div className="w-full mt-5 ml-3">
+                                        <div className="flex flex-col gap-y-5">
+                                            <div>
+                                                <h1 className="font-abc text-white text-2xl lg:text-4xl ">Name - GamePass#12</h1>
+                                            </div>
+                                            <div>
+                                                <h1 className="font-abc text-white text-2xl lg:text-4xl">Quantity - 1</h1>
+                                            </div>
+                                            <div>
+                                                <h1 className="font-abc text-white text-2xl lg:text-4xl">Prize - 5 Tickets</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                          
                         </div>
                     </div>
                 </div>
