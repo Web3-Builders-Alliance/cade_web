@@ -141,8 +141,44 @@ const GetCade = ({ network }) => {
                                     </div>
                                 </div>
                             </div>
-                           
-                          
+                            <div className="flex justify-center mt-5">
+                                <h1 className="text-white font-abc text-4xl lg:text-5xl mt-5">Collection</h1>
+                            </div>
+                            <div className="flex justify-center mt-5">
+                                <div className="items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10">
+                                    <div className="flex flex-col">
+                                        <div className="flex flex-col bg-gray-900 w-max mt-5 rounded-lg border-2 border-white">
+                                            <img src="/drip.jpg" className="h-40 w-40 lg:h-44 lg:w-44 rounded-lg" alt="prize" />
+                                        </div>
+
+                                    </div>
+                                    <div className="w-full items-center flex justify-center">
+                                        <div className="flex flex-col gap-y-5">
+                                            <div className="">
+                                                <h1 className="flex font-abc text-white text-2xl lg:text-4xl ">Name - Drip</h1>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex flex-row mt-10">
+                                <div className="w-1/4 flex justify-center">
+                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+                                        {"<"}
+                                    </button>
+                                </div>
+                                <div className="w-2/4 flex justify-center">
+                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+                                        Redeem Now
+                                    </button>
+                                </div>
+                                <div className="w-1/4 flex justify-center mr-2">
+                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+                                        {">"}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
