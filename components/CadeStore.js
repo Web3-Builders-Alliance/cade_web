@@ -4,7 +4,7 @@ import WelcomeBoard from './Common/WelcomeBoard';
 import { MiniStore } from './Data/data'
 import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import Swipe from 'react-easy-swipe';
-const CadeStore = () => {
+const CadeStore = ({openBottomSheet}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const showNextItem = () => {
         if (currentIndex <= MiniStore.length - 2) {
@@ -35,7 +35,7 @@ const CadeStore = () => {
                             <img class="h-40 w-28" src='pipe.png' alt='pole' />
                         </div>
                         <div class="absolute top-1/2 left-0">
-                            <WelcomeBoard message={"Hot Prizes"} width={"60"} />
+                            <WelcomeBoard message={"Prizes"} width={"60"} />
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ const CadeStore = () => {
                     <img className='w-20 h-20' src='/spotlight.png' alt='' />
                 </div> */}
 
-                <div id='item' className="lg:ml-10 absolute border-4 border-white w-max top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 lg:-translate-y-1/3 rounded-lg shadow bg-gray-800 ">
+                <div id='item' className="lg:ml-10 absolute border-4 border-white w-max top-1/4 left-1/2 transform -translate-x-1/2 lg:-translate-x-1/3 -translate-y-1/4 lg:-translate-y-1/3 rounded-lg shadow bg-gray-800 ">
                 
                     {MiniStore.map((item, index) => {
                         if (index == currentIndex) {
@@ -74,8 +74,8 @@ const CadeStore = () => {
                                             <h5 className="mb-2 w-32 text-3xl font-abc font-bold tracking-tight text-white">{item.name}</h5>
                                             <span className='font-abc mb-2 text-lg mr-3 text-yellow-400'>{item.price} Tickets</span>
                                         </div>
-                                        <button className="mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
-                                            Redeem
+                                        <button onClick={openBottomSheet} className="mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+                                            Preview
                                         </button>
                                     </div>
                                 </>
@@ -85,7 +85,7 @@ const CadeStore = () => {
 
                 </div>
 
-                <div className='relative ml-0 lg:ml-16'>
+                <div className='absolute ml-0 lg:ml-16 lg:left-1/4'>
                     <div className='relative w-72 lg:w-80 h-32 bg-blue-900 rounded-b-lg'>
                         <div className='mb-10 flex flex-col items-center bg-red-500 w-full absolute top-1/2'>
                             <h1 className='font-abc text-white text-5xl'>
