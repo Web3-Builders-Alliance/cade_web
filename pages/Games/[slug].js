@@ -52,6 +52,10 @@ const Games = ({
     setMargin("40px")
     setBlinkingLightColor("red-500")
     setHeading("No Transaction")
+
+    setTimeout(()=>{
+      setOpen(false)
+    })
   }
 
 
@@ -159,7 +163,7 @@ const Games = ({
           <Sheet.Content>
             <div className="flex justify-center items-center overflow-x-auto">
               <div className='mt-72 flex justify-center items-center'>
-                <CadeCardMachine color={data.responce.color} margin={margin} heading={heading} blinkingLightColor={blinkingLightColor} insertCadeCard={insertCadeCard} takeOutCard={takeOutCard} ableToPlay={ableToPlay} playFunction={playGameForLargeScreen} />
+                <CadeCardMachine color={data.responce.color} margin={margin} heading={heading} blinkingLightColor={blinkingLightColor} insertCadeCard={insertCadeCard} takeOutCard={takeOutCard} ableToPlay={ableToPlay} playFunction={playGameForLargeScreen}/>
               </div>
             </div>
           </Sheet.Content>
@@ -268,11 +272,12 @@ export async function getServerSideProps(context) {
   let apiURL;
   let ENV = process.env.NODE_ENV
   if (ENV == "development") {
-    apiURL = process.env.DEV_API_URL
+    apiURL = process.env.DEV_API_URL ?? "http://localhost:3000/"
   }
   else {
     apiURL = process.env.PROD_API_URL
   }
+  console.log(apiURL)
   const res = await fetch(`${apiURL}/api/games/${slug}`)
   const data = await res.json()
   return {

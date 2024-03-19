@@ -8,35 +8,9 @@ import { useCadeEconomy } from '../connector/economy'
 import CadeStore from "../components/CadeStore";
 import Sheet from 'react-modal-sheet';
 
-const GetCade = ({ network }) => {
-    const { swap, pay_for_game, claim_usdc } = useCadeEconomy()
-    const { publicKey } = useWallet()
+const GetCade = () => {
     const { mintCade } = useTicket()
     const [isOpen, setOpen] = useState(false);
-    const [blinkingLight, setBlinkingLight] = useState("red-500")
-    const [paymentMethod, setPaymentMethod] = useState("USDC")
-    const [networkHeading, setNetworkHeading] = useState("Switch To Devnet")
-    const [networkPageLink, setNetworkPageLink] = useState("http://localhost:3000/GetCade/Mainnet")
-    const [userPublicKey, setUserPublicKey] = useState("")
-
-    useEffect(() => {
-        if (publicKey) {
-            setUserPublicKey(truncateWalletAddress(publicKey.toBase58()))
-        }
-        else {
-            setUserPublicKey("---")
-        }
-        if (network == "Mainnet") {
-            setNetworkHeading("Switch To Devnet")
-            setNetworkPageLink("http://localhost:3000/GetCade/Devnet")
-        }
-        else {
-            setNetworkHeading("Switch To Mainnet")
-            setNetworkPageLink("http://localhost:3000/GetCade/Mainnet")
-        }
-
-    }, [publicKey, userPublicKey, network])
-
     const buyCadeData = [
         {
             name: "20x Cade Coins",
@@ -69,42 +43,6 @@ const GetCade = ({ network }) => {
             price: 0
         },
     ]
-
-    const [currentIndex, setCurrentIndex] = useState(0)
-    const showNextItem = () => {
-        if (currentIndex <= buyCadeData.length - 2) {
-            setCurrentIndex(currentIndex + 1)
-            console.log(currentIndex, buyCadeData.length)
-        }
-        else {
-            setCurrentIndex(0)
-        }
-    }
-
-    const showPrevItem = () => {
-        if (currentIndex != 0) {
-            setCurrentIndex(currentIndex - 1)
-        }
-    }
-
-    const doTheTransactionWithUSDC = () => {
-        setBlinkingLight("green-500")
-        setPaymentMethod("USDC")
-        setTimeout(async () => {
-            await mintCade()
-            setBlinkingLight("red-500")
-
-        }, 100)
-    }
-
-    const doTheTransactionWithBONK = () => {
-        setBlinkingLight("green-500")
-        setPaymentMethod("BONK")
-        setTimeout(async () => {
-            await mintCade()
-            setBlinkingLight("red-500")
-        }, 100)
-    }
 
     const handleBottomSheet = () => {
         setOpen(true)
@@ -161,17 +99,17 @@ const GetCade = ({ network }) => {
                             </div>
                             <div className="flex flex-row mt-5">
                                 <div className="w-1/4 flex justify-center">
-                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-white  hover:bg-blue-500 text-black font-semibold hover:text-white  border border-white hover:border-transparent rounded">
                                         {"<"}
                                     </button>
                                 </div>
                                 <div className="w-2/4 flex justify-center">
-                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-white  hover:bg-blue-500 text-black  hover:text-white  border border-white hover:border-transparent rounded">
                                         Redeem Now
                                     </button>
                                 </div>
                                 <div className="w-1/4 flex justify-center mr-2">
-                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-white  hover:bg-blue-500 text-black font-semibold hover:text-white  border border-white hover:border-transparent rounded">
                                         {">"}
                                     </button>
                                 </div>
@@ -195,8 +133,8 @@ const GetCade = ({ network }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="w-full bg-gray-950 mt-5 border border-white rounded-md">
-                                <h1 className="flex font-abc text-white text-2xl lg:text-3xl ml-5">More Collection</h1>
+                                <div className="w-full bg-gray-900 mt-5 border border-white rounded-md">
+                                    <h1 className="flex font-abc text-white text-2xl lg:text-3xl ml-5 underline mt-3">More Collection</h1>
                                     <div className="flex justify-center gap-x-10 mt-5 m-3">
                                         <div className="flex flex-col items-center">
                                             <div>
@@ -216,7 +154,7 @@ const GetCade = ({ network }) => {
                                         </div>
                                         <div className="flex flex-col items-center">
                                             <div>
-                                                <img src="/cadep.webp" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border border-white" alt="prize" />
+                                                <img src="/cade.png" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border border-white" alt="prize" />
                                             </div>
                                             <div>
                                                 <h1 className="flex font-abc text-white text-2xl ">Cade</h1>
@@ -225,7 +163,7 @@ const GetCade = ({ network }) => {
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -233,23 +171,5 @@ const GetCade = ({ network }) => {
         </>
     );
 };
-
-export async function getServerSideProps(context) {
-    let network;
-    const { slug } = context.query;
-
-    if (slug == "Devnet") {
-        network = "Devnet"
-    }
-    else {
-        network = "Mainnet"
-    }
-
-    return {
-        props: {
-            network
-        },
-    };
-}
 
 export default GetCade;

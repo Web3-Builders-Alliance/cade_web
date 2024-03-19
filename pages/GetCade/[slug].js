@@ -4,14 +4,16 @@ import { useTicket } from '../../connector/ticket'
 import { useWallet } from '@solana/wallet-adapter-react';
 import { truncateWalletAddress } from "../../hooks/Truncate";
 import Link from "next/link";
+import { useCadeEconomy } from '../../connector/economy'
+import { BN } from "@coral-xyz/anchor";
+import { it } from "@faker-js/faker";
 
-const GetCade = ({ network }) => {
+const GetCade = () => {
+    const { swap, pay_for_game, claim_usdc } = useCadeEconomy()
     const { publicKey } = useWallet()
     const { mintCade } = useTicket()
     const [blinkingLight, setBlinkingLight] = useState("red-500")
     const [paymentMethod, setPaymentMethod] = useState("USDC")
-    const [networkHeading, setNetworkHeading] = useState("Switch To Devnet")
-    const [networkPageLink, setNetworkPageLink] = useState("http://localhost:3000/GetCade/Mainnet")
     const [userPublicKey, setUserPublicKey] = useState("")
 
     useEffect(() => {
@@ -21,47 +23,45 @@ const GetCade = ({ network }) => {
         else {
             setUserPublicKey("---")
         }
-        if (network == "Mainnet") {
-            setNetworkHeading("Switch To Devnet")
-            setNetworkPageLink("http://localhost:3000/GetCade/Devnet")
-        }
-        else {
-            setNetworkHeading("Switch To Mainnet")
-            setNetworkPageLink("http://localhost:3000/GetCade/Mainnet")
-        }
 
-    }, [publicKey, userPublicKey, network])
+    }, [publicKey, userPublicKey])
 
     const buyCadeData = [
         {
-            name: "20x Cade Coins",
+            name: "10x Cade Coins",
             img: "/cadenew.png",
-            price: 0
-        },
-        {
-            name: "40x Cade Coins",
-            img: "/cadenew.png",
-            price: 0
-        },
-        {
-            name: "60x Cade Coins",
-            img: "/cadenew.png",
-            price: 0
+            price: new BN(1_000_000),
+            priceUSDC: 1
         },
         {
             name: "20x Cade Coins",
-            img: "/cade.png",
-            price: 0
+            img: "/cadenew.png",
+            price: new BN(2_000_000),
+            priceUSDC: 2
+        },
+        {
+            name: "30x Cade Coins",
+            img: "/cadenew.png",
+            price: new BN(3_000_000),
+            priceUSDC: 3
         },
         {
             name: "40x Cade Coins",
             img: "/cade.png",
-            price: 0
+            price: new BN(4_000_000),
+            priceUSDC: 4
+        },
+        {
+            name: "50x Cade Coins",
+            img: "/cade.png",
+            price: new BN(5_000_000),
+            priceUSDC: 5
         },
         {
             name: "60x Cade Coins",
             img: "/cade.png",
-            price: 0
+            price: new BN(6_000_000),
+            priceUSDC: 6
         },
     ]
 
@@ -145,6 +145,8 @@ const GetCade = ({ network }) => {
                                         Have FUN.
                                     </h2>
                                 </div>
+                                <button onClick={swap}>Swap</button>
+                                <button onClick={claim_usdc}>Claim</button>
                             </div>
 
                         </div>
@@ -158,19 +160,14 @@ const GetCade = ({ network }) => {
                                     {`Cade Token Will be delivered into your Cade Card that represent your wallet ->`}
                                     <span className="ml-5 text-white underline">{userPublicKey}</span>
                                 </p>
-                                <Link href={networkPageLink}>
-                                    <p className="w-full text-2xl text-white lg:text-2xl font-abc mt-4 hover:text-blue-400 underline">
-                                        {networkHeading}
-                                    </p>
-                                </Link>
                             </div>
                             <div className="h-full flex flex-col  justify-center items-center">
                                 {buyCadeData.map((item, index) => {
                                     if (currentIndex == index) {
                                         return (
                                             <>
-                                                <div className="absolute top-1/4 translate-y-5 lg:translate-y-0">
-                                                    <CardMachineForBuyUSDC img={item.img} heading={item.name} showNext={showNextItem} showPrevItem={showPrevItem} blinkingLightColor={blinkingLight} doTransactionWithUSDC={doTheTransactionWithUSDC} doTheTransactionWithBONK={doTheTransactionWithBONK} paymentMethod={paymentMethod} network={network} />
+                                                <div className="absolute top-1/4 lg:translate-y-0">
+                                                    <CardMachineForBuyUSDC img={item.img} heading={item.name} showNext={showNextItem} showPrevItem={showPrevItem} blinkingLightColor={blinkingLight} doTransactionWithUSDC={doTheTransactionWithUSDC} doTheTransactionWithBONK={doTheTransactionWithBONK} paymentMethod={paymentMethod} price={item.price} priceUSDC={item.priceUSDC} />
                                                 </div>
                                             </>
                                         )
@@ -184,23 +181,5 @@ const GetCade = ({ network }) => {
         </>
     );
 };
-
-export async function getServerSideProps(context) {
-    let network;
-    const { slug } = context.query;
-
-    if (slug == "Devnet") {
-        network = "Devnet"
-    }
-    else {
-        network = "Mainnet"
-    }
-
-    return {
-        props: {
-            network
-        },
-    };
-}
 
 export default GetCade;
