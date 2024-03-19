@@ -1,139 +1,255 @@
-import React, { useEffect, useState } from 'react'
-import { FaWifi } from "react-icons/fa6";
-import { TiBatteryFull } from "react-icons/ti";
-import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import React, { useEffect, useState } from "react";
+import CardMachineForBuyUSDC from "../components/GetCade/CardMachineForBuyUSDC";
+import { useTicket } from '../connector/ticket'
+import { useWallet } from '@solana/wallet-adapter-react';
+import { truncateWalletAddress } from "../hooks/Truncate";
+import Link from "next/link";
+import { useCadeEconomy } from '../connector/economy'
+import CadeStore from "../components/CadeStore";
+import Sheet from 'react-modal-sheet';
 
-const CardMachineForBuyUSDC = ({ showNext, showPrevItem, img, heading, blinkingLightColor, doTransactionWithUSDC, doTheTransactionWithBONK, paymentMethod, network }) => {
-    const [onMainnet, setOnMainnet] = useState(true)
+const GetCade = ({ network }) => {
+    const { swap, pay_for_game, claim_usdc } = useCadeEconomy()
+    const { publicKey } = useWallet()
+    const { mintCade } = useTicket()
+    const [isOpen, setOpen] = useState(false);
+    const [blinkingLight, setBlinkingLight] = useState("red-500")
+    const [paymentMethod, setPaymentMethod] = useState("USDC")
+    const [networkHeading, setNetworkHeading] = useState("Switch To Devnet")
+    const [networkPageLink, setNetworkPageLink] = useState("http://localhost:3000/GetCade/Mainnet")
+    const [userPublicKey, setUserPublicKey] = useState("")
 
     useEffect(() => {
-        if (network == "Mainnet") {
-            setOnMainnet(true)
-        } else {
-            setOnMainnet(false)
+        if (publicKey) {
+            setUserPublicKey(truncateWalletAddress(publicKey.toBase58()))
         }
-    }, [network])
+        else {
+            setUserPublicKey("---")
+        }
+        if (network == "Mainnet") {
+            setNetworkHeading("Switch To Devnet")
+            setNetworkPageLink("http://localhost:3000/GetCade/Devnet")
+        }
+        else {
+            setNetworkHeading("Switch To Mainnet")
+            setNetworkPageLink("http://localhost:3000/GetCade/Mainnet")
+        }
+
+    }, [publicKey, userPublicKey, network])
+
+    const buyCadeData = [
+        {
+            name: "20x Cade Coins",
+            img: "/cadenew.png",
+            price: 0
+        },
+        {
+            name: "40x Cade Coins",
+            img: "/cadenew.png",
+            price: 0
+        },
+        {
+            name: "60x Cade Coins",
+            img: "/cadenew.png",
+            price: 0
+        },
+        {
+            name: "20x Cade Coins",
+            img: "/cade.png",
+            price: 0
+        },
+        {
+            name: "40x Cade Coins",
+            img: "/cade.png",
+            price: 0
+        },
+        {
+            name: "60x Cade Coins",
+            img: "/cade.png",
+            price: 0
+        },
+    ]
+
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const showNextItem = () => {
+        if (currentIndex <= buyCadeData.length - 2) {
+            setCurrentIndex(currentIndex + 1)
+            console.log(currentIndex, buyCadeData.length)
+        }
+        else {
+            setCurrentIndex(0)
+        }
+    }
+
+    const showPrevItem = () => {
+        if (currentIndex != 0) {
+            setCurrentIndex(currentIndex - 1)
+        }
+    }
+
+    const doTheTransactionWithUSDC = () => {
+        setBlinkingLight("green-500")
+        setPaymentMethod("USDC")
+        setTimeout(async () => {
+            await mintCade()
+            setBlinkingLight("red-500")
+
+        }, 100)
+    }
+
+    const doTheTransactionWithBONK = () => {
+        setBlinkingLight("green-500")
+        setPaymentMethod("BONK")
+        setTimeout(async () => {
+            await mintCade()
+            setBlinkingLight("red-500")
+        }, 100)
+    }
+
+    const handleBottomSheet = () => {
+        setOpen(true)
+    }
+
     return (
         <>
-            <div className='flex flex-col h-max relative overflow-x-hidden'>
-                <div id='first' style={{ height: "36rem", borderWidth: "10px", width: "320px" }} className={`z-10 relative flex flex-col justify-center  bg-orange-500 items-center rounded-3xl border-gray-300 m-10`}>
-                    <div className='w-72 h-80 bg-transparent rounded-xl'>
-                        <div className='rounded-2xl absolute top-0 left-1/2 -translate-x-1/2 w-64 mt-5 h-8 bg-black'>
-                            <div className='flex flex-row justify-center gap-x-10 mt-1.5'>
-                                <div className={`rounded-full w-4 h-4 bg-${blinkingLightColor} animate-blink`}></div>
-                                <div className={`rounded-full w-4 h-4 bg-${blinkingLightColor} animate-blink`}></div>
-                                <div className={`rounded-full w-4 h-4 bg-${blinkingLightColor} animate-blink`}></div>
-                                <div className={`rounded-full w-4 h-4 bg-${blinkingLightColor} animate-blink`}></div>
+            <Sheet isOpen={isOpen} onClose={() => setOpen(false)}>
+                <Sheet.Container style={{ backgroundColor: "#191414" }}>
+                    <Sheet.Header />
+                    <Sheet.Content>
+                        <div className="flex justify-center items-center overflow-x-auto">
+                            <div className='mt-40 flex justify-center items-center'>
+                                <img src="/freeticket.webp" className="h-40 w-40 lg:h-80 lg:w-80" alt="prize" />
                             </div>
                         </div>
+                    </Sheet.Content>
+                </Sheet.Container>
+                <Sheet.Backdrop />
+            </Sheet>
+            <section className="min-h-screen flex justify-center text-gray-600 body-font overflow-x-hidden bg-gradient-to-bl from-blue-950 via-black to-black">
+                <div className="px-10 flex justify-center">
+                    <div className="rounded-xl  xl:p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-10 w-screen p-10 gap-y-10">
+                        <div id="first" className="border-4 border-white rounded-xl bg-[url('/brickwall.jpg')]  flex flex-col md:ml-auto w-full h-max">
+                            <CadeStore openBottomSheet={handleBottomSheet} />
+                        </div>
 
-                        <div className='absolute top-1/4 -translate-y-1/3'>
-                            <div style={{ height: "14rem" }} className='relative border-4 border-blue-950  rounded-xl  w-72 bg-blue-800'>
+                        <div id="second" className="p-3 border-4 rounded-xl h-max border-white bg-gradient-to-bl from-blue-950 via-black to-black  flex flex-col md:ml-auto w-full  overflow-x-hidden overflow-y-hidden">
+                            <div className="flex justify-center">
+                                <h1 className="text-white font-abc text-4xl lg:text-5xl mt-5">Prize Details</h1>
+                            </div>
+                            <div className="flex justify-center mt-5">
+                                <div className="items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10">
+                                    <div className="flex flex-col">
+                                        <div className="flex flex-col bg-gray-900 w-max mt-5 rounded-lg border-2 border-white">
+                                            <img src="/freeticket.webp" className="h-40 w-40 lg:h-60 lg:w-60" alt="prize" />
+                                        </div>
 
-                                <div className='flex flex-row'>
-                                    <div className='w-3/4 flex justify-center'>
-                                        <h1 className='font-abc text-2xl text-white'>
-                                            Cade Card Machine
-                                        </h1>
                                     </div>
-                                    <div className='gap-x-4 mt-2 flex flex-row w-1/4'>
-                                        <FaWifi className='text-white   text-lg' />
-                                        <TiBatteryFull className='text-white text-lg' />
+                                    <div className="w-full">
+                                        <div className="flex flex-col gap-y-2">
+                                            <div>
+                                                <h1 className="font-abc text-white text-2xl lg:text-4xl ">Name - GamePass#12</h1>
+                                            </div>
+                                            <div>
+                                                <h1 className="font-abc text-white text-2xl lg:text-4xl">Quantity - 1</h1>
+                                            </div>
+                                            <div>
+                                                <h1 className="font-abc text-white text-2xl lg:text-4xl">Prize - 5 Tickets</h1>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='mt-10 ml-5 w-full flex flex-row justify-center items-center absolute top-1/2 -translate-y-1/2 gap-x-2'>
-                                    <div className='w-1/3 h-24'>
-                                        <img className='' src={img} alt='' />
-                                    </div>
-                                    <div className='w-2/3'>
-                                        <h1 className='text-2xl text-white font-abc underline'>{onMainnet ? heading : "18x Cade Coin"}</h1>
-                                        {/* <span className='flex justify-end text-white font-abc text-xl mr-5 underline'>{onMainnet ? `= 2 USDC/2300 BONK` : "---"}</span> */}
-                                    </div>
-                                </div>
-                                <div className='w-full flex justify-center items-center absolute top-1/3 mt-3'>
-                                    <h1 className='text-xl text-yellow-300 font-abc'>Network : <span className='underline bg-black p-1'>{network}</span></h1>
-                                </div>
-                                <div className='w-full flex justify-center items-center absolute top-1/3 -translate-y-6'>
-                                    <h1 className='text-xl text-yellow-300 font-abc'>Payment Method : <span className='underline bg-black p-1'>{onMainnet ? paymentMethod : "--"}</span></h1>
-                                </div>
-                                <div className='w-full flex justify-center items-center absolute bottom-0 mb-2'>
-                                    <h1 className='text-2xl text-white font-abc'>No Transaction <span className='animate-blink'>...</span></h1>
                                 </div>
                             </div>
-                        </div>
-
-
-
-                        <div style={{ height: "15rem" }} className='absolute top-1/2 -translate-y-1/4 mt-20 border-4 border-gray-500 rounded-xl w-72 bg-slate-800 flex'>
-
-                            <div className='relative flex-col  w-full'>
-                                <div className='w-max absolute top-0 flex flex-row gap-x-16 mt-1 left-1/2 -translate-x-1/2'>
-                                    <div onClick={showPrevItem} className='flex flex-col items-center w-1/2 cursor-pointer'>
-                                        <div className='border-4 border-white flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
-                                            <MdOutlineKeyboardDoubleArrowLeft className='text-white' />
-                                        </div>
-                                        <div className='flex justify-center w-max'>
-                                            <h1 className='text-white font-abc text-xl'>Select Prev</h1>
-                                        </div>
-                                    </div>
-
-
-                                    <div onClick={showNext} className='flex flex-col items-center w-1/2 cursor-pointer'>
-                                        <div className='border-4 border-white flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
-                                            <MdOutlineKeyboardDoubleArrowRight className='text-white' />
-                                        </div>
-                                        <div className='flex justify-center w-max'>
-                                            <h1 className='text-white font-abc text-xl'>Select Next </h1>
-                                        </div>
-                                        
-                                    </div>
+                            <div className="flex flex-row mt-5">
+                                <div className="w-1/4 flex justify-center">
+                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-white  hover:bg-blue-500 text-black font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+                                        {"<"}
+                                    </button>
                                 </div>
-                               
-                                <div class="absolute top-1/3 -translate-y-1 mt-2 border-t-2 border-gray-700 w-full"></div>
-                                <div className='h-1/2 w-max flex flex-row items-center justify-center mt-3 mb-1 absolute top-1/4 left-1/2 -translate-x-1/2'>
-                                    <div className='w-1/3 ml-1'>
-                                        <h1 className=' text-white font-abc text-lg'>Select Pay Method</h1>
-                                    </div>
-                                    <div onClick={doTransactionWithUSDC} className='flex  flex-col items-center w-1/3 cursor-pointer'>
-                                        <div className='border-4 border-blue-400 flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
-                                            <img src='/usdc.png' alt='' />
-                                        </div>
-                                        <h1 className='text-white font-abc text-xl mt-1'>USDC✅</h1>
-                                    </div>
-                                    <div onClick={doTheTransactionWithBONK} className='flex flex-col items-center  w-1/3 cursor-pointer'>
-                                        <div className='border-4 border-yellow-400 flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
-                                            <img className='h-7 w-7 rounded-xl' src='/bonk.jpg' alt='' />
-                                        </div>
-                                        <h1 className='text-white font-abc text-xl mt-1'>BONK</h1>
-                                    </div>
+                                <div className="w-2/4 flex justify-center">
+                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-white  hover:bg-blue-500 text-black  hover:text-white  border border-white hover:border-transparent rounded">
+                                        Redeem Now
+                                    </button>
                                 </div>
-                                <button style={{ width: '90%' }} className="absolute left-1/2 -translate-x-1/2 bottom-0 -translate-y-2 text-3xl font-abc bg-slate-800 hover:bg-blue-500 text-white border-4 border-gray-500 rounded-lg">
-                                    Buy Now
-                                </button>
+                                <div className="w-1/4 flex justify-center mr-2">
+                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-white  hover:bg-blue-500 text-black font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+                                        {">"}
+                                    </button>
+                                </div>
                             </div>
+                            <div className="flex justify-center mt-1">
+                                <h1 className="text-white font-abc text-4xl lg:text-5xl mt-5">Collection</h1>
+                            </div>
+                            <div>
+                                <div className="flex justify-center mt-5">
+                                    <div className="items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 ">
+                                        <div className="flex flex-col">
+                                            <div className="flex flex-col bg-gray-900 w-max mt-5 rounded-lg border-2 border-white">
+                                                <img src="/drip.jpg" className="h-40 w-40 lg:h-44 lg:w-44 rounded-lg" alt="prize" />
+                                            </div>
 
+                                        </div>
+                                        <div className="w-full items-center flex justify-center">
+                                            <div>
+                                                <h1 className="flex font-abc text-white text-2xl lg:text-4xl ">Drip</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="w-full bg-gray-900 mt-5 border border-white rounded-md">
+                                <h1 className="flex font-abc text-white text-2xl lg:text-3xl ml-5 underline">More Collection</h1>
+                                    <div className="flex justify-center gap-x-10 mt-5 m-3">
+                                        <div className="flex flex-col items-center">
+                                            <div>
+                                                <img src="/drip.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border border-white" alt="prize" />
+                                            </div>
+                                            <div>
+                                                <h1 className="flex font-abc text-white text-2xl ">Drip</h1>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col items-center">
+                                            <div>
+                                                <img src="/soda.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border border-white" alt="prize" />
+                                            </div>
+                                            <div>
+                                                <h1 className="flex font-abc text-white text-2xl ">Soda</h1>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col items-center">
+                                            <div>
+                                                <img src="/cade.png" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border border-white" alt="prize" />
+                                            </div>
+                                            <div>
+                                                <h1 className="flex font-abc text-white text-2xl ">Cade</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
                         </div>
-                        <div className='flex justify-center'>
-
-                        </div>
-                        <div className='rounded-t-xl absolute bottom-0 w-72 h-3 bg-gray-900 border-2 border-gray-300 overflow-y-hidden'></div>
                     </div>
                 </div>
-                <div className='flex justify-center' style={{ marginTop: '-220px' }}>
-                    <div id='second' className='relative overflow-y-hidden bg-center bg-[url("/ig.png")] object-center bg-no-repeat border-2 border-gray-600 flex flex-col justify-center items-center bg-slate-800 w-72 h-96 rounded-xl'>
-                        <div className='absolute top-0 left-0 m-3'>
-                            <img class="w-10 h-10 p-1 rounded-full ring-1 ring-gray-300 dark:ring-gray-500" src="/cadenew.png" alt="Bordered avatar" />
-                        </div>
-                        <div className='absolute top-0 right-0 m-3'>
-                            <h1 className='text-white font-abc text-3xl'>----</h1>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+            </section>
         </>
-    )
+    );
+};
+
+export async function getServerSideProps(context) {
+    let network;
+    const { slug } = context.query;
+
+    if (slug == "Devnet") {
+        network = "Devnet"
+    }
+    else {
+        network = "Mainnet"
+    }
+
+    return {
+        props: {
+            network
+        },
+    };
 }
 
-export default CardMachineForBuyUSDC
+export default GetCade;
