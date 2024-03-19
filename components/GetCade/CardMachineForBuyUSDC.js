@@ -64,67 +64,57 @@ const CardMachineForBuyUSDC = ({ showNext, showPrevItem, img, heading, blinkingL
 
 
 
-                        <div style={{ height: "12rem" }} className='absolute top-1/2 -translate-y-1/4 mt-16 border-4 border-gray-500 rounded-xl w-72 bg-slate-800 flex justify-center items-center'>
-                            {!onMainnet ? (
-                                <>
-                                    <button onClick={doTransactionWithUSDC} className="px-2 py-4 text-3xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
-                                        Get Devnet Cade ✔
-                                    </button>
-                                </>
-                            ) : (
-                                <>
-                                    <div>
-                                        <div className='flex flex-col'>
-                                            <div className='h-1/2 flex flex-row gap-x-5 mt-1'>
-                                                <div onClick={showPrevItem} className='flex flex-col items-center w-1/2 cursor-pointer'>
-                                                    <div className='border-4 border-white flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
-                                                        <MdOutlineKeyboardDoubleArrowLeft className='text-white' />
-                                                    </div>
-                                                    <div className='flex justify-center w-max'>
-                                                        <h1 className='text-white font-abc text-xl'>Select Prev</h1>
-                                                    </div>
-                                                </div>
+                        <div style={{ height: "15rem" }} className='absolute top-1/2 -translate-y-1/4 mt-20 border-4 border-gray-500 rounded-xl w-72 bg-slate-800 flex'>
 
-
-                                                <div onClick={showNext} className='flex flex-col items-center w-1/2 cursor-pointer'>
-                                                    <div className='border-4 border-white flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
-                                                        <MdOutlineKeyboardDoubleArrowRight className='text-white' />
-                                                    </div>
-                                                    <div className='flex justify-center w-max'>
-                                                        <h1 className='text-white font-abc text-xl'>Select Next </h1>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="mt-2 border-t-2 border-gray-700"></div>
-                                            <div className='h-1/2 flex flex-row mt-3 mb-1'>
-                                                <div className='w-1/3 ml-1'>
-                                                    <h1 className=' text-white font-abc text-lg'>Select Pay Method</h1>
-                                                </div>
-                                                <div onClick={doTransactionWithUSDC} className='flex  flex-col items-center w-1/3 cursor-pointer'>
-                                                    <div className='border-4 border-blue-400 flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
-                                                        <img src='/usdc.png' alt='' />
-                                                    </div>
-                                                    <h1 className='text-white font-abc text-xl mt-1'>USDC✅</h1>
-                                                </div>
-                                                <div onClick={doTheTransactionWithBONK} className='flex flex-col items-center  w-1/3 cursor-pointer'>
-                                                    <div className='border-4 border-yellow-400 flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
-                                                        <img className='h-7 w-7 rounded-xl' src='/bonk.jpg' alt='' />
-                                                    </div>
-                                                    <h1 className='text-white font-abc text-xl mt-1'>BONK</h1>
-                                                </div>
-                                            </div>
+                            <div className='relative flex-col  w-full'>
+                                <div className='w-max absolute top-0 flex flex-row gap-x-16 mt-1 left-1/2 -translate-x-1/2'>
+                                    <div onClick={showPrevItem} className='flex flex-col items-center w-1/2 cursor-pointer'>
+                                        <div className='border-4 border-white flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
+                                            <MdOutlineKeyboardDoubleArrowLeft className='text-white' />
                                         </div>
-
+                                        <div className='flex justify-center w-max'>
+                                            <h1 className='text-white font-abc text-xl'>Select Prev</h1>
+                                        </div>
                                     </div>
 
-                                </>
-                            )}
+
+                                    <div onClick={showNext} className='flex flex-col items-center w-1/2 cursor-pointer'>
+                                        <div className='border-4 border-white flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
+                                            <MdOutlineKeyboardDoubleArrowRight className='text-white' />
+                                        </div>
+                                        <div className='flex justify-center w-max'>
+                                            <h1 className='text-white font-abc text-xl'>Select Next </h1>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                               
+                                <div class="absolute top-1/3 -translate-y-1 mt-2 border-t-2 border-gray-700 w-full"></div>
+                                <div className='h-1/2 w-max flex flex-row items-center justify-center mt-3 mb-1 absolute top-1/4 left-1/2 -translate-x-1/2'>
+                                    <div className='w-1/3 ml-1'>
+                                        <h1 className=' text-white font-abc text-lg'>Select Pay Method</h1>
+                                    </div>
+                                    <div onClick={doTransactionWithUSDC} className='flex  flex-col items-center w-1/3 cursor-pointer'>
+                                        <div className='border-4 border-blue-400 flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
+                                            <img src='/usdc.png' alt='' />
+                                        </div>
+                                        <h1 className='text-white font-abc text-xl mt-1'>USDC✅</h1>
+                                    </div>
+                                    <div onClick={doTheTransactionWithBONK} className='flex flex-col items-center  w-1/3 cursor-pointer'>
+                                        <div className='border-4 border-yellow-400 flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
+                                            <img className='h-7 w-7 rounded-xl' src='/bonk.jpg' alt='' />
+                                        </div>
+                                        <h1 className='text-white font-abc text-xl mt-1'>BONK</h1>
+                                    </div>
+                                </div>
+                                <button style={{ width: '90%' }} className="absolute left-1/2 -translate-x-1/2 bottom-0 -translate-y-2 text-3xl font-abc bg-slate-800 hover:bg-blue-500 text-white border-4 border-gray-500 rounded-lg">
+                                    Buy Now
+                                </button>
+                            </div>
+
                         </div>
                         <div className='flex justify-center'>
-                            <button style={{width : '90%'}} className="absolute bottom-0 -translate-y-5 text-3xl font-abc bg-slate-800 hover:bg-blue-500 text-white border-4 border-gray-500 rounded-lg">
-                               Buy Now
-                            </button>
+
                         </div>
                         <div className='rounded-t-xl absolute bottom-0 w-72 h-3 bg-gray-900 border-2 border-gray-300 overflow-y-hidden'></div>
                     </div>
