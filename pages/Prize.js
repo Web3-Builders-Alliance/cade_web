@@ -138,7 +138,7 @@ const GetCade = () => {
                                     <div className="flex justify-center gap-x-10 mt-5 m-3">
                                         <div className="flex flex-col items-center">
                                             <div>
-                                                <img src="/drip.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border border-white" alt="prize" />
+                                                <img src="/drip.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-4 border-white" alt="prize" />
                                             </div>
                                             <div>
                                                 <h1 className="flex font-abc text-white text-2xl ">Drip</h1>
@@ -146,7 +146,7 @@ const GetCade = () => {
                                         </div>
                                         <div className="flex flex-col items-center">
                                             <div>
-                                                <img src="/soda.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border border-white" alt="prize" />
+                                                <img src="/soda.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-4 border-white" alt="prize" />
                                             </div>
                                             <div>
                                                 <h1 className="flex font-abc text-white text-2xl ">Soda</h1>
@@ -154,7 +154,7 @@ const GetCade = () => {
                                         </div>
                                         <div className="flex flex-col items-center">
                                             <div>
-                                                <img src="/cade.png" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border border-white" alt="prize" />
+                                                <img src="/cade.png" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-4 border-white" alt="prize" />
                                             </div>
                                             <div>
                                                 <h1 className="flex font-abc text-white text-2xl ">Cade</h1>

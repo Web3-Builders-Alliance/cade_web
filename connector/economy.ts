@@ -49,19 +49,19 @@ export function useCadeEconomy() {
   let indie_gamer_x_ata: PublicKey;
   let indie_gamer_vault: PublicKey;
 
-  const auth = new PublicKey("4ckfssJg39q744jWED8vq43UQzvo4Xn5nTad9iLw4eJ6");
+  const auth = new PublicKey("F1k4KWvxvAATajNNjRjgr6iKafyiE2nguiqWgQQMRx7F");
   const new_auth = new PublicKey(
-    "5wuuXg4kujcfpLe8w3jG1HuKZcFwPTWQSTbczjm1gudr"
+    "3BdgDss9nYNpDdtkquXxdFBtMzLMAWyJgEP5gqCQdUUT"
   );
-  const config = new PublicKey("64AXM8E2RqshGbZhJwE7AsUmQi8p8B7tZXdWCJzzMJTX");
+  const config = new PublicKey("FJqdDWDbkiR82GgQGUpHJsR7poXNC4M3Yp2aYmSXVJsq");
   const lp_config = new PublicKey(
-    "2j4AQGadQmzDZfzMieMR8sRABgVtuvrg4RVjyi8jtud9"
+    "AnjcKCJqacNLzaZjjkrjqgUFCXW2fedgGB4zfRNFreCg"
   );
 
   const mint_x = new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr");
   const mint_lp = PublicKey.findProgramAddressSync(
     [Buffer.from("lp"), config.toBuffer()],
-    new PublicKey("F7hRE5ZrgzpGngTEomD2viiSwDj5EcMSd8FfFuvwDZLL")
+    new PublicKey("FtrbVfeTkte7b9KTHYzpaRzJZT1t1SHaR1QuhyAusNTW")
   )[0];
 
   const createATA = async () => {
