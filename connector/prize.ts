@@ -111,11 +111,11 @@ export function CadePrizeManager() {
     }
   };
 
-  const put_prize_back_on_admin_vault = async () => {
+  const claim_prize_from_cade_store = async (mint , config) => {
     if (program && publicKey) {
       try {
         const cade_chest_mint = new PublicKey(
-          "BjwKL4x9TjoBgzkgBW14bzn1ocu7HX8up63qXG9AFWE9"
+          mint
         );
         const prize_auth = PublicKey.findProgramAddressSync(
           [Buffer.from("prize_auth")],
@@ -126,7 +126,7 @@ export function CadePrizeManager() {
         //   program.programId
         // )[0];
         const prize_config = new PublicKey(
-          "9RA5sBfFVrEXn7PYccNLhuB2k8fBFKy6CX5jjNZH92XT"
+          config
         );
         const particular_prize_vault = await getAssociatedTokenAddress(
           cade_chest_mint,
@@ -161,59 +161,8 @@ export function CadePrizeManager() {
     }
   };
 
-  const claim_specific_prize = async () => {
-    if (program && publicKey) {
-      try {
-        const cade_chest_mint = new PublicKey(
-          "BjwKL4x9TjoBgzkgBW14bzn1ocu7HX8up63qXG9AFWE9"
-        );
-        const prize_auth = PublicKey.findProgramAddressSync(
-          [Buffer.from("prize_auth")],
-          program.programId
-        )[0];
-        // const prize_config = PublicKey.findProgramAddressSync(
-        //   [Buffer.from("prize"), seed.toBuffer().reverse()],
-        //   program.programId
-        // )[0];
-        const prize_config = new PublicKey(
-          "9RA5sBfFVrEXn7PYccNLhuB2k8fBFKy6CX5jjNZH92XT"
-        );
-        const particular_prize_vault = await getAssociatedTokenAddress(
-          cade_chest_mint,
-          prize_auth,
-          true,
-          TOKEN_PROGRAM_ID
-        );
-        const claimer_ata = await getAssociatedTokenAddress(
-          cade_chest_mint,
-          publicKey,
-          false,
-          TOKEN_PROGRAM_ID
-        );
-
-        const tx = await program.methods
-          .claimPrize()
-          .accounts({
-            user: publicKey,
-            prizeMint: cade_chest_mint,
-            particularPrizeVault: particular_prize_vault,
-            claimerAta: claimer_ata,
-            prizeAuth: prize_auth,
-            prizeConfig: prize_config,
-            tokenProgram: TOKEN_PROGRAM_ID,
-            associatedTokenProgram: ASSOCIATED_PROGRAM_ID,
-            systemProgram: SystemProgram.programId,
-          })
-          .rpc({ skipPreflight: true });
-        await confirmTx(tx);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  };
   return {
     put_prize_on_its_vault,
-    put_prize_back_on_admin_vault,
-    claim_specific_prize,
+    claim_prize_from_cade_store,
   };
 }

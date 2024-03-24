@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CadeStore from "../components/CadeStore";
 import Sheet from 'react-modal-sheet';
-
+import { CadePrizeManager } from '../connector/prize'
+import { PublicKey } from "@metaplex-foundation/js";
 const GetCade = () => {
+    const { put_prize_on_its_vault, claim_prize_from_cade_store } = CadePrizeManager()
     const [isOpen, setOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const DripCollectionData = [
@@ -11,35 +13,55 @@ const GetCade = () => {
             img: "/drip1.png",
             price: "5",
             collectionName: "Drip",
-            collectionImage: "/drip.jpg"
+            collectionImage: "/drip.jpg",
+            info: {
+                mint: null,
+                config: null
+            }
         },
         {
             name: "Comic NFT",
             img: "/drip2.jpg",
             price: "10",
             collectionName: "Drip",
-            collectionImage: "/drip.jpg"
+            collectionImage: "/drip.jpg",
+            info: {
+                mint: null,
+                config: null
+            }
         },
         {
             name: "Lets Stamp",
             img: "/drip3.png",
             price: "5",
             collectionName: "Drip",
-            collectionImage: "/drip.jpg"
+            collectionImage: "/drip.jpg",
+            info: {
+                mint: null,
+                config: null
+            }
         },
         {
             name: "Drip Art NFT#1",
             img: "/drip4.jpg",
             price: "10",
             collectionName: "Drip",
-            collectionImage: "/drip.jpg"
+            collectionImage: "/drip.jpg",
+            info: {
+                mint: null,
+                config: null
+            }
         },
         {
             name: "Drip Art NFT#2",
             img: "/drip5.gif",
             price: "10",
             collectionName: "Drip",
-            collectionImage: "/drip.jpg"
+            collectionImage: "/drip.jpg",
+            info: {
+                mint: null,
+                config: null
+            }
         },
     ]
     const CadeStoreData = [
@@ -50,7 +72,11 @@ const GetCade = () => {
             desc: "Play Again If You Loose",
             price: "2",
             collectionName: "Cade",
-            collectionImage: "/cade.png"
+            collectionImage: "/cade.png",
+            info: {
+                mint: null,
+                config: null
+            }
         },
         {
             name: "Blind Chest",
@@ -58,7 +84,11 @@ const GetCade = () => {
             desc: "Open Chest for Exited Suprizes",
             price: "5",
             collectionName: "Cade",
-            collectionImage: "/cade.png"
+            collectionImage: "/cade.png",
+            info: {
+                mint: new PublicKey("BjwKL4x9TjoBgzkgBW14bzn1ocu7HX8up63qXG9AFWE9"),
+                config: new PublicKey("9RA5sBfFVrEXn7PYccNLhuB2k8fBFKy6CX5jjNZH92XT")
+            }
         },
         {
             name: "Cade GamePass",
@@ -66,12 +96,23 @@ const GetCade = () => {
             desc: "Sol Loaded Lottery Tickets for Periodic Drawings",
             price: "3",
             collectionName: "Cade",
-            collectionImage: "/cade.png"
+            collectionImage: "/cade.png",
+            info: {
+                mint: null,
+                config: null
+            }
         }
 
     ]
     const [currentCollection, setCurrentCollection] = useState(CadeStoreData)
 
+    const claim_prize = () => {
+        if (currentCollection[currentIndex].info.config && currentCollection[currentIndex].info.mint) {
+            claim_prize_from_cade_store(currentCollection[currentIndex].info.mint.toBase58(), currentCollection[currentIndex].info.config.toBase58())
+        } else {
+            alert("This Item Not Available atm , try another item or contact ADMIN")
+        }
+    }
 
     const changeCollection = (collectionName) => {
         switch (collectionName) {
@@ -127,7 +168,7 @@ const GetCade = () => {
                 <div className="px-10 flex justify-center">
                     <div className="rounded-xl  xl:p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-10 w-screen p-10 gap-y-10">
                         <div id="first" className="border-4 border-white rounded-xl bg-[url('/brickwall.jpg')]  flex flex-col md:ml-auto w-full h-max">
-                            <CadeStore openBottomSheet={handleBottomSheet} currentPrizeData={currentCollection[currentIndex]} showNext={showNextItem} showPrev={showPrevItem}/>
+                            <CadeStore openBottomSheet={handleBottomSheet} currentPrizeData={currentCollection[currentIndex]} showNext={showNextItem} showPrev={showPrevItem} />
                         </div>
 
                         <div id="second" className="p-3 border-4 rounded-xl h-max border-white bg-gradient-to-bl from-blue-950 via-black to-black  flex flex-col md:ml-auto w-full  overflow-x-hidden overflow-y-hidden">
@@ -175,7 +216,7 @@ const GetCade = () => {
                                     </button>
                                 </div>
                                 <div className="w-2/4 flex justify-center">
-                                    <button className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-white  hover:bg-blue-500 text-black  hover:text-white  border border-white hover:border-transparent rounded">
+                                    <button onClick={() => claim_prize()} className="w-full mt-2 ml-3 mb-2 px-2 text-3xl font-abc bg-white  hover:bg-blue-500 text-black  hover:text-white  border border-white hover:border-transparent rounded">
                                         Redeem Now
                                     </button>
                                 </div>
