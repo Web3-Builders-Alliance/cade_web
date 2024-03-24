@@ -134,13 +134,13 @@ export function useCadeEconomy() {
     );
   };
 
-  const swap = async () => {
+  const swap = async (amount) => {
     if (program && publicKey) {
       try {
         await createATA();
         const tx = await program.methods
           .swap(
-            new BN(5_000_000),
+            new BN(amount),
             new BN(Math.floor(new Date().getTime() / 1000) + 600)
           )
           .accounts({

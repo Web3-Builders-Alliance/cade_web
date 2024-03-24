@@ -14,6 +14,7 @@ const GetCade = () => {
     const { mintCade } = useTicket()
     const [blinkingLight, setBlinkingLight] = useState("red-500")
     const [paymentMethod, setPaymentMethod] = useState("USDC")
+    const [transactionHeading, setTransactionHeading] = useState("No Tranaction")
     const [userPublicKey, setUserPublicKey] = useState("")
 
     useEffect(() => {
@@ -30,37 +31,37 @@ const GetCade = () => {
         {
             name: "10x Cade Coins",
             img: "/cadenew.png",
-            price: new BN(1_000_000),
+            price: 1_000_000,
             priceUSDC: 1
         },
         {
             name: "20x Cade Coins",
             img: "/cadenew.png",
-            price: new BN(2_000_000),
+            price: 2_000_000,
             priceUSDC: 2
         },
         {
             name: "30x Cade Coins",
             img: "/cadenew.png",
-            price: new BN(3_000_000),
+            price: 3_000_000,
             priceUSDC: 3
         },
         {
             name: "40x Cade Coins",
             img: "/cade.png",
-            price: new BN(4_000_000),
+            price: 4_000_000,
             priceUSDC: 4
         },
         {
             name: "50x Cade Coins",
             img: "/cade.png",
-            price: new BN(5_000_000),
+            price: 5_000_000,
             priceUSDC: 5
         },
         {
             name: "60x Cade Coins",
             img: "/cade.png",
-            price: new BN(6_000_000),
+            price: 6_000_000,
             priceUSDC: 6
         },
     ]
@@ -86,8 +87,15 @@ const GetCade = () => {
         setBlinkingLight("green-500")
         setPaymentMethod("USDC")
         setTimeout(async () => {
-            await mintCade()
-            setBlinkingLight("red-500")
+            setTransactionHeading(`Transacting -${buyCadeData[currentIndex].priceUSDC}USDC`)
+            try {
+                await swap(buyCadeData[currentIndex].price)
+            } catch (e) {
+                console.log(e)
+            } finally {
+                setBlinkingLight("red-500")
+                setTransactionHeading("No Transactions")
+            }
 
         }, 100)
     }
@@ -96,8 +104,15 @@ const GetCade = () => {
         setBlinkingLight("green-500")
         setPaymentMethod("BONK")
         setTimeout(async () => {
-            await mintCade()
-            setBlinkingLight("red-500")
+            setTransactionHeading(`Transacting -${buyCadeData[currentIndex].priceUSDC}USDC`)
+            try {
+                await swap(buyCadeData[currentIndex].price)
+            } catch (e) {
+                console.log(e)
+            } finally {
+                setBlinkingLight("red-500")
+                setTransactionHeading("No Transactions")
+            }
         }, 100)
     }
 
@@ -145,7 +160,7 @@ const GetCade = () => {
                                         Have FUN.
                                     </h2>
                                 </div>
-                                <button onClick={swap}>Swap</button>
+                                <button onClick={() => swap(2_000_000)}>Swap</button>
                                 <button onClick={claim_usdc}>Claim</button>
                             </div>
 
@@ -167,7 +182,7 @@ const GetCade = () => {
                                         return (
                                             <>
                                                 <div className="absolute top-1/4 lg:translate-y-0">
-                                                    <CardMachineForBuyUSDC img={item.img} heading={item.name} showNext={showNextItem} showPrevItem={showPrevItem} blinkingLightColor={blinkingLight} doTransactionWithUSDC={doTheTransactionWithUSDC} doTheTransactionWithBONK={doTheTransactionWithBONK} paymentMethod={paymentMethod} price={item.price} priceUSDC={item.priceUSDC} />
+                                                    <CardMachineForBuyUSDC img={item.img} heading={item.name} showNext={showNextItem} showPrevItem={showPrevItem} blinkingLightColor={blinkingLight} doTransactionWithUSDC={doTheTransactionWithUSDC} doTheTransactionWithBONK={doTheTransactionWithBONK} paymentMethod={paymentMethod} price={item.price} priceUSDC={item.priceUSDC} transactionHeading={transactionHeading} />
                                                 </div>
                                             </>
                                         )

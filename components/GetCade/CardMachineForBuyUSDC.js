@@ -3,7 +3,7 @@ import { FaWifi } from "react-icons/fa6";
 import { TiBatteryFull } from "react-icons/ti";
 import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
-const CardMachineForBuyUSDC = ({ showNext, showPrevItem, img, heading, blinkingLightColor, doTransactionWithUSDC, doTheTransactionWithBONK, paymentMethod, priceUSDC }) => {
+const CardMachineForBuyUSDC = ({ showNext, showPrevItem, img, heading, blinkingLightColor, doTransactionWithUSDC, doTheTransactionWithBONK, paymentMethod, priceUSDC, transactionHeading }) => {
 
     return (
         <>
@@ -48,7 +48,7 @@ const CardMachineForBuyUSDC = ({ showNext, showPrevItem, img, heading, blinkingL
                                     <h1 className='text-xl text-yellow-300 font-abc'>Payment Method : <span className='underline bg-black p-1'>{paymentMethod}</span></h1>
                                 </div>
                                 <div className='w-full flex justify-center items-center absolute bottom-0 mb-2'>
-                                    <h1 className='text-2xl text-white font-abc'>No Transaction <span className='animate-blink'>...</span></h1>
+                                    <h1 className='text-2xl text-white font-abc'>{transactionHeading}<span className='animate-blink'>...</span></h1>
                                 </div>
                             </div>
                         </div>
@@ -85,20 +85,20 @@ const CardMachineForBuyUSDC = ({ showNext, showPrevItem, img, heading, blinkingL
                                     <div className='w-1/3 ml-1'>
                                         <h1 className=' text-white font-abc text-lg'>Select Pay Method</h1>
                                     </div>
-                                    <div onClick={doTransactionWithUSDC} className='flex  flex-col items-center w-1/3 cursor-pointer'>
+                                    <div className='flex  flex-col items-center w-1/3 cursor-pointer'>
                                         <div className='border-4 border-blue-400 flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
                                             <img src='/usdc.png' alt='' />
                                         </div>
                                         <h1 className='text-white font-abc text-xl mt-1'>USDC✅</h1>
                                     </div>
-                                    <div onClick={doTheTransactionWithBONK} className='flex flex-col items-center  w-1/3 cursor-pointer'>
+                                    <div className='flex flex-col items-center  w-1/3 cursor-pointer'>
                                         <div className='border-4 border-yellow-400 flex justify-center items-center w-14 h-10 mt-2 rounded-lg bg-gray-900'>
                                             <img className='h-7 w-7 rounded-xl' src='/bonk.jpg' alt='' />
                                         </div>
                                         <h1 className='text-white font-abc text-xl mt-1'>BONK</h1>
                                     </div>
                                 </div>
-                                <button style={{ width: '90%' }} className="absolute left-1/2 -translate-x-1/2 bottom-0 -translate-y-2 text-3xl font-abc bg-slate-800 hover:bg-blue-500 text-white border-4 border-gray-500 rounded-lg">
+                                <button onClick={doTransactionWithUSDC} style={{ width: '90%' }} className="absolute left-1/2 -translate-x-1/2 bottom-0 -translate-y-2 text-3xl font-abc bg-slate-800 hover:bg-blue-500 text-white border-4 border-gray-500 rounded-lg">
                                     Buy Now ({priceUSDC}USDC)
                                 </button>
                             </div>
