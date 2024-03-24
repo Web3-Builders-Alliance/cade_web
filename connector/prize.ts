@@ -7,6 +7,7 @@ import * as bs58 from "bs58";
 import { BN } from "@coral-xyz/anchor";
 import { randomBytes } from "crypto";
 import { utf8 } from "@project-serum/anchor/dist/cjs/utils/bytes";
+
 import { findProgramAddressSync } from "@project-serum/anchor/dist/cjs/utils/pubkey";
 import {
   useAnchorWallet,
@@ -28,6 +29,11 @@ export function CadePrizeManager() {
   const { connection } = useConnection();
   const { publicKey } = useWallet();
   const anchorWallet = useAnchorWallet();
+
+
+  const init = Keypair.fromSecretKey(bs58.decode(wallet));
+  const gamer_vault = Keypair.fromSecretKey(bs58.decode(wallet_three));
+
 
   const program = useMemo(() => {
     if (anchorWallet) {
@@ -70,7 +76,7 @@ export function CadePrizeManager() {
         //   program.programId
         // )[0];
         const prize_config = new PublicKey(
-          "5AkpQzxXfzFeTCNQZ4s1NaP2GyewTC81QQxbUtzrEn1w"
+          "9RA5sBfFVrEXn7PYccNLhuB2k8fBFKy6CX5jjNZH92XT"
         );
         const particular_prize_vault = await getAssociatedTokenAddress(
           cade_chest_mint,
@@ -105,6 +111,56 @@ export function CadePrizeManager() {
     }
   };
 
+  const put_prize_back_on_admin_vault = async () => {
+    if (program && publicKey) {
+      try {
+        const cade_chest_mint = new PublicKey(
+          "BjwKL4x9TjoBgzkgBW14bzn1ocu7HX8up63qXG9AFWE9"
+        );
+        const prize_auth = PublicKey.findProgramAddressSync(
+          [Buffer.from("prize_auth")],
+          program.programId
+        )[0];
+        // const prize_config = PublicKey.findProgramAddressSync(
+        //   [Buffer.from("prize"), seed.toBuffer().reverse()],
+        //   program.programId
+        // )[0];
+        const prize_config = new PublicKey(
+          "9RA5sBfFVrEXn7PYccNLhuB2k8fBFKy6CX5jjNZH92XT"
+        );
+        const particular_prize_vault = await getAssociatedTokenAddress(
+          cade_chest_mint,
+          prize_auth,
+          true,
+          TOKEN_PROGRAM_ID
+        );
+        const admin_prize_vault = await getAssociatedTokenAddress(
+          cade_chest_mint,
+          publicKey,
+          false,
+          TOKEN_PROGRAM_ID
+        );
+        const tx = await program.methods
+          .givePrizeBackToVault()
+          .accounts({
+            user: publicKey,
+            prizeAuth: prize_auth,
+            prizeMint: cade_chest_mint,
+            particularPrizeVault: particular_prize_vault,
+            adminPrizeVault: admin_prize_vault,
+            prizeConfig: prize_config,
+            tokenProgram: TOKEN_PROGRAM_ID,
+            associatedTokenProgram: ASSOCIATED_PROGRAM_ID,
+            systemProgram: SystemProgram.programId,
+          })
+          .rpc({ skipPreflight: true });
+        await confirmTx(tx);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
   const claim_specific_prize = async () => {
     if (program && publicKey) {
       try {
@@ -120,7 +176,7 @@ export function CadePrizeManager() {
         //   program.programId
         // )[0];
         const prize_config = new PublicKey(
-          "5AkpQzxXfzFeTCNQZ4s1NaP2GyewTC81QQxbUtzrEn1w"
+          "9RA5sBfFVrEXn7PYccNLhuB2k8fBFKy6CX5jjNZH92XT"
         );
         const particular_prize_vault = await getAssociatedTokenAddress(
           cade_chest_mint,
@@ -134,11 +190,11 @@ export function CadePrizeManager() {
           false,
           TOKEN_PROGRAM_ID
         );
-        
+
         const tx = await program.methods
-          .claimPrize(new BN(1))
+          .claimPrize()
           .accounts({
-            userClaim: publicKey,
+            user: publicKey,
             prizeMint: cade_chest_mint,
             particularPrizeVault: particular_prize_vault,
             claimerAta: claimer_ata,
@@ -157,6 +213,7 @@ export function CadePrizeManager() {
   };
   return {
     put_prize_on_its_vault,
+    put_prize_back_on_admin_vault,
     claim_specific_prize,
   };
 }

@@ -174,7 +174,7 @@ export type Prizemanager = {
       "name": "claimPrize",
       "accounts": [
         {
-          "name": "userClaim",
+          "name": "user",
           "isMut": true,
           "isSigner": true
         },
@@ -222,12 +222,7 @@ export type Prizemanager = {
           "isSigner": false
         }
       ],
-      "args": [
-        {
-          "name": "amount",
-          "type": "u64"
-        }
-      ]
+      "args": []
     }
   ],
   "accounts": [
@@ -440,7 +435,7 @@ export const IDL: Prizemanager = {
       "name": "claimPrize",
       "accounts": [
         {
-          "name": "userClaim",
+          "name": "user",
           "isMut": true,
           "isSigner": true
         },
@@ -488,12 +483,7 @@ export const IDL: Prizemanager = {
           "isSigner": false
         }
       ],
-      "args": [
-        {
-          "name": "amount",
-          "type": "u64"
-        }
-      ]
+      "args": []
     }
   ],
   "accounts": [
