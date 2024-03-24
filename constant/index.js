@@ -24,4 +24,7 @@ export const ECONOMY_PROGRAM_ID = new PublicKey(
   "FtrbVfeTkte7b9KTHYzpaRzJZT1t1SHaR1QuhyAusNTW"
 );
 
+export const PRIZE_MANAGER_PROGRAM_ID = new PublicKey(
+  "EamyjF7GPGssck4ErdB3zvJm3fQL52k9uivMRcRqN417"
+);
 
