@@ -47,17 +47,18 @@ const CadeStore = ({ openBottomSheet, currentPrizeData, showNext, showPrev }) =>
                 </div>
 
                 <div className='absolute ml-0 lg:ml-16 lg:left-1/4'>
-                    <div className='relative w-72 lg:w-80 h-32 bg-blue-900 rounded-b-lg'>
-                        <div className='mb-10 flex flex-col items-center bg-red-500 w-full absolute top-1/2'>
-                            <h1 className='font-abc text-white text-5xl'>
-                                Prize Center
-                            </h1>
+                    <div className='xl:translate-x-5'>
+                        <div className='relative w-72 lg:w-80 h-32 bg-blue-900 rounded-b-lg'>
+                            <div className='mb-10 flex flex-col items-center bg-red-500 w-full absolute top-1/2'>
+                                <h1 className='font-abc text-white text-5xl'>
+                                    Prize Center
+                                </h1>
+                            </div>
+
+                            <div className='border-4 border-black absolute w-80 lg:w-96 h-10 mb-10 bg-blue-200 top-0 left-2/4 -translate-x-1/2'>
+
+                            </div>
                         </div>
-
-                        <div className='border-4 border-black absolute w-80 lg:w-96 h-10 mb-10 bg-blue-200 top-0 left-2/4 -translate-x-1/2'>
-
-                        </div>
-
                     </div>
                     <div className='absolute top-0 -translate-y-12'>
                         <FaGift className='text-yellow-300 text-5xl' />

@@ -156,8 +156,8 @@ const GetCade = () => {
                     <Sheet.Header />
                     <Sheet.Content>
                         <div className="flex justify-center items-center overflow-x-auto">
-                            <div className='mt-40 flex justify-center items-center'>
-                                <img src={currentCollection[currentIndex].img} className="h-40 w-40 lg:h-80 lg:w-80" alt="prize" />
+                            <div className='mt-28 flex justify-center items-center border-4 border-white rounded-md bg-gray-900'>
+                                <img src={currentCollection[currentIndex].img} className="h-40 w-40 lg:h-96 lg:w-96 rounded-sm" alt="prize" />
                             </div>
                         </div>
                     </Sheet.Content>
