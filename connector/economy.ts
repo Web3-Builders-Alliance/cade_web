@@ -112,16 +112,7 @@ export function useCadeEconomy() {
       indie_gamer_vault = new PublicKey("CjTfcazNUPbcUQyq72QxKN8aMwWzZLTJrj8uQrXTB3qR")
       indie_gamer_x_ata = new PublicKey("8Cb3MHuFrmVL3kcd5xMkbACp4tgXAz17SGPfMh4VEASW")
 
-      console.log(initializer_x_ata.toBase58());
-      console.log(initializer_lp_ata.toBase58());
-      console.log(vault_x_ata.toBase58());
-      console.log(vault_y_ata.toBase58());
-      console.log(vault_lp_ata.toBase58());
-      console.log(indie_gamer_vault.toBase58());
-      console.log(indie_gamer_x_ata.toBase58());
-      console.log(mint_lp.toBase58());
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -168,7 +159,6 @@ export function useCadeEconomy() {
           .rpc({ skipPreflight: true });
         await confirmTx(tx);
       } catch (error) {
-        console.log(error);
       }
     }
   };
@@ -198,7 +188,6 @@ export function useCadeEconomy() {
           });
         await confirmTx(tx);
       } catch (error) {
-        console.log(error);
       }
     }
   };
@@ -232,7 +221,6 @@ export function useCadeEconomy() {
           await confirmTx(tx)
       }
     } catch (error) {
-      console.log(error);
     }
   };
   return {
