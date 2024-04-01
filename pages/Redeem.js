@@ -18,323 +18,144 @@ import {
   CadeGameLife,
 } from "../components/Data/data";
 import { useWallet } from "@solana/wallet-adapter-react";
+
 const Redeem = () => {
-  const { createTransaction } = useUSDCPay();
-  const {publicKey} = useWallet()
-  const [loading, setLoading] = useState(false);
-
-  const newTransfer = () => {
-    (async () => {
-      try {
-        setLoading(true);
-        const keypair = Keypair.fromSecretKey(bs58.decode(sw));
-        const connection = new Connection(
-          "https://api.devnet.solana.com",
-          "finalized"
-        );
-
-        // Mint address
-        const mint = new PublicKey(
-          "BjwKL4x9TjoBgzkgBW14bzn1ocu7HX8up63qXG9AFWE9"
-        );
-
-        // Recipient address
-        const to = new PublicKey(
-          "44n5CYX18L6p4VxVECE9ZNYrAGB9GKD477b78kPNq5Su"
-        );
-
-        const form = new PublicKey(
-          "A7QXP9G8NE8vVSZ1s8XdwF5SmBHvg21S6wavJ7vwsr3i"
-        );
-
-        const to_account = await getOrCreateAssociatedTokenAccount(
-          connection,
-          keypair,
-          mint,
-          publicKey
-        );
-
-        const txhash = transfer(
-          connection,
-          keypair,
-          form,
-          to_account.address,
-          keypair.publicKey,
-          1
-        );
-
-        console.log("Success ! Check", txhash);
-        setLoading(false);
-      } catch (e) {
-        console.error(`Oops, something went wrong: ${e}`);
-      }
-    })();
+  const { publicKey } = useWallet();
+  const [cade, setCade] = useState(100);
+  const [redeemingCadeAmount, setRedeemingCadeAmount] = useState(0);
+  const [recievingUSDCAmount, setRecievingAmount] = useState(0);
+  const gamerPublickey = new PublicKey("96bnZMDpCHWfUTRAfrjYLGXGmFYNDUqEqPWEGK78mK7K")
+  const getUSDCForCade = (percentage) => {
+    if (publicKey.toBase58() == gamerPublickey.toBase58()) {
+      let usdcAmount = ((percentage / 100) * cade) / 10;
+      let cadeAmount = (percentage / 100) * cade;
+      setRedeemingCadeAmount(cadeAmount);
+      setRecievingAmount(usdcAmount);
+    } else {
+      alert("You Have 0 Published Games on Cade , try usig another wallet")
+      console.log(publicKey)
+      console.log(gamerPublickey)
+    }
   };
-
-  const finalNewTransfer = () => {
-    createTransaction(
-      publicKey,
-      new PublicKey("2JSg1MdNqRg9z4RP7yiE2NV86fux2BNtF3pSDjhoi767"),
-      2
-    );
-    setTimeout(() => {
-      newTransfer();
-    }, [2000]);
-  };
-  const newTransferh = () => {
-    (async () => {
-      try {
-        setLoading(true);
-        const keypair = Keypair.fromSecretKey(bs58.decode(sw));
-        const connection = new Connection(
-          "https://api.devnet.solana.com",
-          "finalized"
-        );
-
-        // Mint address
-        const mint = new PublicKey(
-          "JDJdgTdgomKbcq6i5XJL7KncBZWLiwS4TioMz2S4APLd"
-        );
-
-        // Recipient address
-        const to = new PublicKey(
-          "44n5CYX18L6p4VxVECE9ZNYrAGB9GKD477b78kPNq5Su"
-        );
-
-        const form = new PublicKey(
-          "xvuabNVBH3Y4GxYc4QbXXZyKCLBpqwXA1gZZrsnKNaz"
-        );
-
-        const to_account = await getOrCreateAssociatedTokenAccount(
-          connection,
-          keypair,
-          mint,
-          publicKey
-        );
-
-        const txhash = transfer(
-          connection,
-          keypair,
-          form,
-          to_account.address,
-          keypair.publicKey,
-          1
-        );
-
-        console.log("Success ! Check", txhash);
-        setLoading(false);
-      } catch (e) {
-        console.error(`Oops, something went wrong: ${e}`);
-      }
-    })();
-  };
-
-  const finalNewTransferh = () => {
-    createTransaction(
-      new PublicKey("44n5CYX18L6p4VxVECE9ZNYrAGB9GKD477b78kPNq5Su"),
-      new PublicKey("2JSg1MdNqRg9z4RP7yiE2NV86fux2BNtF3pSDjhoi767"),
-      9
-    );
-    setTimeout(() => {
-      newTransferh();
-    }, [2000]);
-  };
-
   return (
     <>
-      <section className="bg-[url('/kn.jpg')] text-gray-600 body-font">
-        <div className="container px-5 py-10 mx-auto">
-          <div className="flex flex-wrap w-full mb-20">
-            <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
-              <h1 className="font-abc text-7xl font-medium mb-2 text-white">
-                Redeem Cade
-              </h1>
-            </div>
-            <p className="lg:w-1/2 w-full font-abc text-white text-5xl mt-2">
-              Redeem Your Cade for Cool Prizes.
-            </p>
-          </div>  
-
-          {/* CadeGameLife */}
-          <h1 className="text-white text-5xl font-abc">Cade Game Life</h1>
-          <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-            {CadeGameLife.map((item , key) => {
-              return (
-                <div className="bg-black p-6 rounded-lg" key={key}>
-                  <img
-                    height={100}
-                    width={100}
-                    className="h-60 rounded w-full object-cover object-center mb-6"
-                    src={item.img}
-                    alt="content"
-                  />
-                  <h3 className="tracking-widest text-indigo-500 text-xs font-medium title-font">
-                    CADE STORE
-                  </h3>
-                  <h2 className="text-white text-3xl font-abc title-font mb-4">
-                    {item.name}
-                  </h2>
-                  <p className="text-white font-abc text-2xl">{item.desc}</p>
-                  {/* needs onClick execute function  */}
-                  {loading ? (
-                    <>Loading</>
-                  ) : (
-                    <>
-                      <button
-                        // onClick={() => finalNewTransferh()}
-                        // onClick={() => execute("https://wd76k5vv2aka7kcyewzori53k65knga2yncczccn2xxleyurucha.arweave.net/sP_ldrXQFA-oWCWy6KO7V7qmmBrDRCyITdXusmKRoI4")}
-                        className="mt-5 text-black font-abc bg-white border-0 py-2 px-6 focus:outline-none rounded text-2xl"
-                      >
-                        Buy for {item.price} Tickets
-                      </button>
-                    </>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* GamePass */}
-          <h1 className="text-white text-5xl font-abc ml-16">Cade Game Pass</h1>
-          <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-            {GamePass.map((item , key) => {
-              return (
-                <div className="bg-black p-6 rounded-lg" key={key}>
-                  <img
-                    height={100}
-                    width={100}
-                    className="h-60 rounded w-full object-cover object-center mb-6"
-                    src={item.img}
-                    alt="content"
-                  />
-                  <h3 className="tracking-widest text-indigo-500 text-xs font-medium title-font">
-                    CADE STORE
-                  </h3>
-                  <h2 className="text-white text-3xl font-abc title-font mb-4">
-                    {item.name}
-                  </h2>
-                  <p className="text-white font-abc text-2xl">{item.desc}</p>
-                  {/* needs onClick execute function  */}
-                  <button
-                    // onClick={() => execute("https://q75jr5p5oh2pq5wc2xsxptsdiqvmi2wjcoo7xjz47bj7qp7eizra.arweave.net/h_qY9f1x9Ph2wtXld85DRCrEaskTnfunPPhT-D_kRmI")}
-                    className="mt-5 text-black font-abc bg-white border-0 py-2 px-6 focus:outline-none rounded text-2xl"
-                  >
-                    Buy for {item.price} Tickets
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* BlindChest */}
-          <h1 className="text-white text-5xl font-abc ml-16">
-            Cade Blind Chest
+      <div style={{ backgroundColor: 'black' }} className="min-h-screen xl:px-36 py-10">
+        <div className="flex justify-center gap-x-5 flex-row">
+          <h1
+            style={{
+              fontFamily: 'VT323',
+              fontSize: 36,
+              color: 'white',
+              textDecorationLine: 'underline',
+            }}>
+            Publish.
           </h1>
-          <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-            {BlindChest.map((item) => {
-              return (
-                <div className="bg-black p-6 rounded-lg" key={item.name}>
-                  <img
-                    height={100}
-                    width={100}
-                    className="h-60 rounded w-full object-cover object-center mb-6"
-                    src={item.img}
-                    alt="content"
-                  />
-                  <h3 className="tracking-widest text-indigo-500 text-xs font-medium title-font">
-                    CADE STORE
-                  </h3>
-                  <h2 className="text-white text-3xl font-abc title-font mb-4">
-                    {item.name}
-                  </h2>
-                  <p className="text-white font-abc text-2xl">{item.desc}</p>
-                  {/* needs onClick execute function  */}
-                  {loading ? (
-                    <>Loading</>
-                  ) : (
-                    <>
-                      <button
-                        // onClick={() => finalNewTransfer()}
-                        className="mt-5 text-black font-abc bg-white border-0 py-2 px-6 focus:outline-none rounded text-2xl"
-                      >
-                        Buy for {item.price} Tickets
-                      </button>
-                    </>
-                  )}
-                </div>
-              );
-            })}
+          <h1
+            style={{
+              fontFamily: 'VT323',
+              fontSize: 36,
+              color: 'yellow',
+              textDecorationLine: 'underline',
+            }}>
+            Distribute.
+          </h1>
+          <h1
+            style={{
+              fontFamily: 'VT323',
+              fontSize: 36,
+              color: 'white',
+              textDecorationLine: 'underline',
+            }}>
+            Earn.
+          </h1>
+        </div>
+        <div className="flex flex-row justify-between gap-x-3.5 mt-8 p-6 xl:px-20">
+          <div className="">
+            <img
+              className="h-36 w-36 xl:w-80 xl:h-80 rounded-full"
+              src='/drip5.gif'
+            />
           </div>
-
-          {/* LotteryTicket */}
-          <h1 className="text-white text-5xl font-abc ml-16">LotteryTicket</h1>
-          <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-            {LotteryTicket.map((item) => {
-              return (
-                <div className="bg-black p-6 rounded-lg" key={item.name}>
-                  <img
-                    height={100}
-                    width={100}
-                    className="h-60 rounded w-full object-cover object-center mb-6"
-                    src={item.img}
-                    alt="content"
-                  />
-                  <h3 className="tracking-widest text-indigo-500 text-xs font-medium title-font">
-                    CADE STORE
-                  </h3>
-                  <h2 className="text-white text-3xl font-abc title-font mb-4">
-                    {item.name}
-                  </h2>
-                  <p className="text-white font-abc text-2xl">{item.desc}</p>
-                  {/* needs onClick execute function  */}
-                  <button
-                    // onClick={() => execute()}
-                    className="mt-5 text-black font-abc bg-white border-0 py-2 px-6 focus:outline-none rounded text-2xl"
-                  >
-                    Buy for {item.price} Tickets
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Blindbag */}
-          <h1 className="text-white text-5xl font-abc ml-16">Cade BlindBag</h1>
-          <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-            {BlindBag.map((item , key) => {
-              return (
-                <>
-                  <div className="bg-black p-6 rounded-lg" key={key.name}>
-                    <img
-                      height={100}
-                      width={100}
-                      className="h-60 rounded w-full object-cover object-center mb-6"
-                      src={item.img}
-                      alt="content"
-                    />
-                    <h3 className="tracking-widest text-indigo-500 text-xs font-medium title-font">
-                      CADE STORE
-                    </h3>
-                    <h2 className="text-white text-3xl font-abc title-font mb-4">
-                      {item.name}
-                    </h2>
-                    <p className="text-white font-abc text-2xl">{item.desc}</p>
-                    {/* needs onClick execute function  */}
-                    <button
-                      // onClick={() => execute(
-                      //     "https://7nfbqbmned7bnmyijjymjhnmekgf47ojqzhn7r64gypqox7ymaka.arweave.net/-0oYBY0g_hazCEpwxJ2sIoxefcmGTt_H3DYfB1_4YBQ"
-                      // )}
-                      className="mt-5 text-black font-abc bg-white border-0 py-2 px-6 focus:outline-none rounded text-2xl"
-                    >
-                      Buy for {item.price} Tickets
-                    </button>
-                  </div>
-                </>
-              );
-            })}
+          <div className="flex justify-center flex-col items-start">
+            <h1 className="text-2xl xl:text-5xl" style={{ fontFamily: 'VT323' }}>
+              Name - GameDevName
+            </h1>
+            <h1 className="text-2xl xl:text-5xl" style={{ fontFamily: 'VT323' }}>
+              Games Published - 1
+            </h1>
+            <h1 className="text-2xl xl:text-5xl" style={{ fontFamily: 'VT323' }}>
+              Cade Balance - 100
+            </h1>
           </div>
         </div>
-      </section>
+        <div className="flex flex-row gap-x-5 justify-center items-center">
+          <h1 style={{ fontFamily: 'VT323', fontSize: 44 }}>
+            Redeem
+          </h1>
+          <h1
+            style={{
+              fontFamily: 'VT323',
+              fontSize: 90,
+              color: 'yellow',
+            }}>
+            {redeemingCadeAmount}
+          </h1>
+          <h1 style={{ fontFamily: 'VT323', fontSize: 44 }}>Cade</h1>
+        </div>
+        <div className="flex flex-row justify-center gap-x-3 items-center">
+          <div className="cursor-pointer" onClick={() => getUSDCForCade(10)}>
+            <div className="px-2 py-1.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500">
+              <h1 style={{ fontFamily: 'VT323', fontSize: 25 }}>
+                10%
+              </h1>
+            </div>
+          </div>
+          <div className="cursor-pointer" onClick={() => getUSDCForCade(30)}>
+            <div className="px-2 py-1.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500">
+              <h1 style={{ fontFamily: 'VT323', fontSize: 25 }}>
+                30%
+              </h1>
+            </div>
+          </div>
+          <div className="cursor-pointer" onClick={() => getUSDCForCade(60)}>
+            <div className="px-2 py-1.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500">
+              <h1 style={{ fontFamily: 'VT323', fontSize: 25 }}>
+                60%
+              </h1>
+            </div>
+          </div>
+          <div className="cursor-pointer" onClick={() => getUSDCForCade(90)}>
+            <div className="px-2 py-1.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500">
+              <h1 style={{ fontFamily: 'VT323', fontSize: 25 }}>
+                90%
+              </h1>
+            </div>
+          </div>
+          <div className="cursor-pointer" onClick={() => getUSDCForCade(100)}>
+            <div className="px-2 py-1.5 font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500">
+              <h1 style={{ fontFamily: 'VT323', fontSize: 25 }}>
+                100%
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center items-center mt-5">
+          <h1 style={{ fontFamily: 'VT323', fontSize: 30 }}>
+            Recieve 👇
+          </h1>
+        </div>
+        <div className="flex flex-row gap-x-5 justify-center items-center">
+          <h1 style={{ fontFamily: 'VT323', fontSize: 100 }}>
+            {recievingUSDCAmount}
+          </h1>
+          <h1 style={{ fontFamily: 'VT323', fontSize: 100 }}>USDC</h1>
+        </div>
+        <div className="flex justify-center">
+          <button className="mt-5 px-16 text-4xl font-abc bg-transparent  hover:bg-blue-500 text-white font-semibold hover:text-white  border border-white hover:border-transparent rounded">
+            Redeem
+          </button>
+        </div>
+      </div>
     </>
   );
 };
