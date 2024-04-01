@@ -49,18 +49,18 @@ export const OnChainGameData = [
 
 export const PlayMoreData = [
   {
-    img: "/ca44.png",
-    name: "Coin Flip",
-    maker: "@marchedev",
-    machineNumber: 4,
-    color: "orange-400"
-  },
-  {
     img: "/ca66.png",
     name: "FourInLine",
     maker: "@marchedev",
     machineNumber: 6,
     color: "blue-500"
+  },
+  {
+    img: "/ca44.png",
+    name: "Coin Flip",
+    maker: "@marchedev",
+    machineNumber: 4,
+    color: "orange-400"
   },
   {
     img: "/ca11.png",

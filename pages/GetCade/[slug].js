@@ -160,8 +160,8 @@ const GetCade = () => {
                                         Have FUN.
                                     </h2>
                                 </div>
-                                <button onClick={() => swap(2_000_000)}>Swap</button>
-                                <button onClick={claim_usdc}>Claim</button>
+                                {/* <button onClick={() => swap(2_000_000)}>Swap</button>
+                                <button onClick={pay_for_game}>Claim</button> */}
                             </div>
 
                         </div>

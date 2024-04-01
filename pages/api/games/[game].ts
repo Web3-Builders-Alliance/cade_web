@@ -102,10 +102,10 @@ const generateDataForCase = (caseIdentifier: string): GameData | ErrorData => {
         arcadeMachineImage: "/ca66.png",
         color: "blue-500",
       };
-    case "MoleSmash":
+    case "RatSplat":
       return {
         machineNumber : "2",
-        desc: "A MoleSmash Game",
+        desc: "A RatSplat Game",
         img: "/molegame.jpeg",
         isGameExist: true,
         topPlayers: {
@@ -124,7 +124,7 @@ const generateDataForCase = (caseIdentifier: string): GameData | ErrorData => {
         arcadeMachineImage: "/ca22.png",
         color: "orange-500",
       };
-    case "SkylineSkaddle":
+    case "CityStride":
       return {
         machineNumber : "3",
         desc: "A SkylineSkaddle Game",

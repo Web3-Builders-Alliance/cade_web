@@ -4,6 +4,13 @@ import Link from 'next/link';
 const PlayMore = () => {
     const Data = [
         {
+            name: "Four In Line",
+            img: "/fourinline.png",
+            link: "/Games/FourInLine",
+            desc: "A classic strategy game of aligning four tokens in a row.",
+            arcadeMachineImage: "/a4.png"
+        },
+        {
             name: "Tower Defence",
             img: "/tower.jpg",
             link: "/Games/TowerDefence",
@@ -24,13 +31,7 @@ const PlayMore = () => {
             desc: "Ready to race against the best in this high-speed car game!",
             arcadeMachineImage: "/a3.png"
         },
-        {
-            name: "Four In Line",
-            img: "/fourinline.png",
-            link: "/Games/FourInLine",
-            desc: "A classic strategy game of aligning four tokens in a row.",
-            arcadeMachineImage: "/a4.png"
-        },
+        
         {
             name: "Tile Survive",
             img: "/tile.jpg",

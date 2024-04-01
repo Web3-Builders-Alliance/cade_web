@@ -96,18 +96,21 @@ export function useCadeEconomy() {
         true,
         TOKEN_PROGRAM_ID
       );
-      indie_gamer_vault = await getAssociatedTokenAddress(
-        mint_lp,
-        gamer_vault.publicKey,
-        false,
-        TOKEN_PROGRAM_ID
-      );
-      indie_gamer_x_ata = await getAssociatedTokenAddress(
-        mint_x,
-        gamer_vault.publicKey,
-        false,
-        TOKEN_PROGRAM_ID
-      );
+      // indie_gamer_vault = await getAssociatedTokenAddress(
+      //   mint_lp,
+      //   gamer_vault.publicKey,
+      //   false,
+      //   TOKEN_PROGRAM_ID
+      // );
+      // indie_gamer_x_ata = await getAssociatedTokenAddress(
+      //   mint_x,
+      //   gamer_vault.publicKey,
+      //   false,
+      //   TOKEN_PROGRAM_ID
+      // );
+
+      indie_gamer_vault = new PublicKey("CjTfcazNUPbcUQyq72QxKN8aMwWzZLTJrj8uQrXTB3qR")
+      indie_gamer_x_ata = new PublicKey("8Cb3MHuFrmVL3kcd5xMkbACp4tgXAz17SGPfMh4VEASW")
 
       console.log(initializer_x_ata.toBase58());
       console.log(initializer_lp_ata.toBase58());
@@ -115,6 +118,7 @@ export function useCadeEconomy() {
       console.log(vault_y_ata.toBase58());
       console.log(vault_lp_ata.toBase58());
       console.log(indie_gamer_vault.toBase58());
+      console.log(indie_gamer_x_ata.toBase58());
       console.log(mint_lp.toBase58());
     } catch (error) {
       console.log(error);

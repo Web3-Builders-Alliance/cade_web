@@ -23,13 +23,18 @@ const Hero = () => {
     <>
       {/* <Navbar isUserExist={isUserExist} initializeUserFunction={initializeUserFunction} userData={userData}/> */}
       <section className="text-gray-600 body-font relative bg-gradient-to-bl from-blue-950 via-black to-black">
-        <div className="gap-x-5 container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
-          <div className="mt-2">
-            <div className="rounded-xl p-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-5 bg-transparent">
-              <div>
-                <ArcadeMachine />
+        <div className="gap-x-5 container px-5 mx-auto flex sm:flex-nowrap flex-wrap">
+          <div className="mt-">
+            <div className="rounded-xl items-center grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-5 bg-transparent">
+              <div className="">
+                <div className="flex justify-center">
+                  <img className="h-32 w-28 items-center" src="pipe.png" alt="" />
+                </div>
+                <div className="-mt-5 items-center flex justify-center">
+                  <ArcadeMachine />
+                </div>
               </div>
-              <div className="bg-transparent p-4 rounded-2xl">
+              <div className="bg-transparent p-4 rounded-2xl flex justify-center">
                 <CadeCard />
               </div>
             </div>
@@ -41,8 +46,8 @@ const Hero = () => {
                   <DifferentGameSection sectionName={"Unity Games"} UnityGameData={UnityGameData} spotlight={"bluespotlight"} />
                   <DifferentGameSection sectionName={"Onchain Games"} UnityGameData={OnChainGameData} spotlight={"redspotlight"} />
                   <Games />
-                  <RandomGame />
                   <CadeStore />
+                  <RandomGame />
                   <UpcomingGames />
                 </div>
               </div>

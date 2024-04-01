@@ -36,7 +36,7 @@ const UpcomingGames = () => {
                 <div className="flex justify-center">
                   <div className="relative h-40 w-72 mb-3 bg-transparent flex items-center justify-center">
                     {/* Rectangle */}
-                    <div className="mt-3 flex flex-row justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-lg bg-gray-950 border-2 border-white">
+                    <div style={{borderWidth:5}} className="mt-3 flex flex-row justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-md bg-gray-950  border-white">
                       <div className={`m-5 w-1/2 h-24 flex justify-center items-center bg-orange-500 rounded-lg`}>
                         <h1 className='text-6xl font-abc text-yellow-300'>-</h1>
                       </div>

@@ -250,7 +250,7 @@ const GetCade = () => {
                                     <div className="flex justify-center gap-x-10 mt-5 m-3">
                                         <div className="flex flex-col items-center">
                                             <div>
-                                                <img onClick={() => changeCollection("Drip")} src="/drip.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-4 border-white transform hover:scale-110 hover:cursor-pointer hover:border-yellow-300" alt="prize" />
+                                                <img onClick={() => changeCollection("Drip")} src="/drip.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-2 border-white transform hover:scale-110 hover:cursor-pointer hover:border-yellow-300" alt="prize" />
                                             </div>
                                             <div>
                                                 <h1 className="flex font-abc text-white text-2xl ">Drip</h1>
@@ -258,7 +258,7 @@ const GetCade = () => {
                                         </div>
                                         <div className="flex flex-col items-center">
                                             <div>
-                                                <img onClick={() => changeCollection("Cade")} src="/soda.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-4 border-white transform hover:scale-110 hover:cursor-pointer hover:border-yellow-300" alt="prize" />
+                                                <img onClick={() => changeCollection("Cade")} src="/soda.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-2 border-white transform hover:scale-110 hover:cursor-pointer hover:border-yellow-300" alt="prize" />
                                             </div>
                                             <div>
                                                 <h1 className="flex font-abc text-white text-2xl ">Soda</h1>
@@ -266,12 +266,21 @@ const GetCade = () => {
                                         </div>
                                         <div className="flex flex-col items-center">
                                             <div>
-                                                <img onClick={() => changeCollection("Cade")} src="/cade.png" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-4 border-white transform hover:scale-110 hover:cursor-pointer hover:border-yellow-300" alt="prize" />
+                                                <img onClick={() => changeCollection("Cade")} src="/cade.png" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-2 border-white transform hover:scale-110 hover:cursor-pointer hover:border-yellow-300" alt="prize" />
                                             </div>
                                             <div>
                                                 <h1 className="flex font-abc text-white text-2xl ">Cade</h1>
                                             </div>
                                         </div>
+                                        <div className="flex flex-col items-center">
+                                            <div>
+                                                <img onClick={() => changeCollection("Cade")} src="/wba.jpg" className="h-20 w-20 lg:h-20 lg:w-20 rounded-lg border-2 border-white transform hover:scale-110 hover:cursor-pointer hover:border-yellow-300" alt="prize" />
+                                            </div>
+                                            <div>
+                                                <h1 className="flex font-abc text-white text-2xl ">WBA</h1>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

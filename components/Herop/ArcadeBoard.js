@@ -3,7 +3,7 @@ import React from 'react'
 const ArcadeBoard = () => {
   return (
     <>
-      <div className="relative h-32 w-96 mb-3 bg-transparent flex items-center justify-center">
+      <div className="relative h-36 w-96 mb-3 bg-transparent flex items-center justify-center">
         {/* Rectangle */}
         <div className="flex flex-row justify-center items-center absolute top-0 left-0 right-0 bottom-0">
           <div className={`m-5 w-1/3 h-24 flex justify-center items-center bg-yellow-500 rounded-lg`}>

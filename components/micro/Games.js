@@ -12,16 +12,16 @@ const Games = () => {
       color : "red"
     },
     {
-      name: "Mole Smash",
+      name: "Rat Splat",
       img: "/ca22.png",
-      link: "/Games/MoleSmash",
+      link: "/Games/RatSplat",
       desc: "Hit every mole with your hammer when it comes out.",
       color : "orange"
     },
     {
-      name: "Skyline Skaddle",
+      name: "City Stride",
       img: "/ca33.png",
-      link: "/Games/SkylineSkaddle",
+      link: "/Games/CityStride",
       desc: "Navigate a vibrant skyline leaping between skyscrapers.",
       color : "green"
     },
@@ -62,9 +62,9 @@ const Games = () => {
 
                 <div className="relative ">
                   <div className="flex justify-center">
-                    <div className="relative h-40 w-72 mb-3 bg-transparent flex items-center justify-center">
+                    <div className="relative h-40 w-72 mb-3  flex items-center justify-center">
                       {/* Rectangle */}
-                      <div className="mt-3 flex flex-row justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-lg border-2 border-white bg-black">
+                      <div style={{borderWidth:5}} className="mt-3 flex flex-row justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-md border-white bg-gray-950">
                         <div className={`m-5 w-1/2 h-24 flex justify-center items-center bg-${item.color}-500 rounded-lg`}>
                           <h1 className='text-6xl font-abc text-yellow-300'>{key+1}</h1>
                         </div>

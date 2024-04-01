@@ -7,10 +7,10 @@ export default function ArcadeMachine() {
     return (
         <>
             <div className="">
-                <div className="flex justify-center">
+                <div style={{borderWidth:7}} className="h-44 flex justify-center bg-gray-900 w-max items-center border-white rounded-md">
                     <ArcadeBoard />
                 </div>
-                <div className="relative ">
+                <div className="relative mt-5">
                     <Link href='/Games/SkylineSkaddle'>
                         <div className='flex justify-center'>
 
