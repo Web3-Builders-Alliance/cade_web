@@ -33,7 +33,6 @@ const FourInLine = () => {
         .rpc();
       setCreated(true);
     } catch (err) {
-      console.log(err);
     }
   };
   useEffect(() => {

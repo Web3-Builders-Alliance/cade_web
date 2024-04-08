@@ -9,8 +9,6 @@ const CadeCard = () => {
     const isUserExist = useIsUserExist()
     const fetUserData = fetchUserData()
     const initUser = initializeUser()
-    console.log(isUserExist)
-    console.log(userData)
 
     useEffect(() => {
         fetUserData()

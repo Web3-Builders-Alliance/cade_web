@@ -13,7 +13,6 @@ const DifferentGameSection = ({ sectionName, UnityGameData, spotlight }) => {
     const showNextGame = () => {
         if (currentIndex <= MiniStore.length - 2) {
             setCurrentIndex(currentIndex + 1)
-            console.log(currentIndex, MiniStore.length)
         }
         else {
             setCurrentIndex(0)
