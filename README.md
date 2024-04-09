@@ -1,18 +1,7 @@
 <img src="https://i.imgur.com/N6oQbzv.png">
-<div align="center">
-  <img src="https://badgen.net/badge/version/1.0/purple">
-  <img src="https://badgen.net/badge/docs/1.0/purple">
-  <img src="https://badgen.net/badge/contributions/open/purple">
-</div>
 <h1 align="center">'Cade</h1>
 <div align="center">
   <h3>Reimagining Web3 Gaming.</h3>
-  <div align="center">
-    <a href="#">Website</a>
-    •
-    <a href="https://twitter.com/gg_cade">Twitter</a>
-
-  </div>
 </div>
  
 # Whats 'Cade
@@ -24,9 +13,15 @@ Social gaming platform on @Solana providing a FUN GamEx, prizes, leaderboards, p
 'Cade is a decentralized arcade platform, where blockchain-based games can function with a structured marketplace, rewards and social layer. In addition to providing our own games, we aim to provide a place for developers to self-publish their games and plug into our system, thereby providing distribution, incentives, and social with little effort on their end, allowing them to focus on creating awesome games for players to enjoy. The project is from the Q4 Artisan Cohort from WBA.
 
 # 'Cade Programs Repo
-Github - https://github.com/Web3-Builders-Alliance/cade-programs
+
+Cade Mobile - https://github.com/Web3-Builders-Alliance/cade_mobile
+
+Cade Economy - https://github.com/Web3-Builders-Alliance/cade_economy
+
+Cade Unity-Games - https://github.com/Web3-Builders-Alliance/cade-unity-game
 
 # Features
+
 <ul>
 <li>Social Profiles and Avatars</li>
 <li>Platfrom Wide LeaderBoards</li>
@@ -38,9 +33,7 @@ Github - https://github.com/Web3-Builders-Alliance/cade-programs
 </ul>
 
 # PitchDeck And DemoVideo
+
 <ul>
-<li><a href="https://docs.google.com/presentation/d/1ywg0dvkAf_Dhk9IUoVil0YdqrFN0M5Ny-MujCt0wzpU/edit?usp=sharing">Pitch Deck</a></li>
-<li><a href="https://www.youtube.com/watch?v=msKD14lSPtg">Demo Video</a></li>
-
-
-
+<li><a href="https://docs.google.com/presentation/d/15jDaBoUCIgDeViFjmpAaFZZ9jZCdeOZEwCEqQSRjFBo/edit?usp=sharing">Pitch Deck</a></li>
+<li><a href="https://www.youtube.com/watch?v=IrQuomKKppA">Demo Video</a></li>
