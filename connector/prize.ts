@@ -106,7 +106,6 @@ export function CadePrizeManager() {
           .rpc({ skipPreflight: true });
         await confirmTx(tx);
       } catch (e) {
-        console.log(e);
       }
     }
   };
@@ -156,7 +155,6 @@ export function CadePrizeManager() {
           .rpc({ skipPreflight: true });
         await confirmTx(tx);
       } catch (e) {
-        console.log(e);
       }
     }
   };

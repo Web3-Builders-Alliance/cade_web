@@ -47,7 +47,6 @@ export function useAvatarProgram() {
           };
         }
       } catch (error) {
-        console.log(error);
       }
     }
   };
@@ -76,7 +75,6 @@ export function useAvatarProgram() {
 
       } catch (error) {
         setIsInitialized(false)
-        console.log(error);
       }
     }
   };

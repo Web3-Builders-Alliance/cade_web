@@ -19,8 +19,7 @@ const placeBet = async (program, seed, player) => {
   .rpc().then(async (signature) => {
 
   const pdas = await program.account.bet.all()
-  console.log({pdas})
-  console.log({signature})
+
   })
 }
 

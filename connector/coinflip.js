@@ -49,9 +49,7 @@ export function useCoinFlip() {
       // signers: playerTwo instanceof anchor.Wallet ? [] : [playerTwo],
     });
     const gameState = await program.accounts.coinFlip.fetch(coinFlip);
-    console.log("playerTwo: ", playerTwo.publicKey.toString());
-    console.log("Winner:", gameState.state.finished.winner.toString());
-    console.log({ gameState: gameState.players });
+
     // await provider.connection.confirmTransaction(tx);
   }
 

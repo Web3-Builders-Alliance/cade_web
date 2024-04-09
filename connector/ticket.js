@@ -95,7 +95,6 @@ export function useTicket() {
       const tx = await anchorWallet
         .signTransaction(transaction)
         .catch((err) => {
-          console.log(err);
           throw new Error("User rejected the request.");
         });
 
@@ -106,10 +105,7 @@ export function useTicket() {
         .catch((err) => {
           throw new Error(`Unexpected Error Occurred: ${err}`);
         });
-
-      console.log(`Done! Transaction Hash: ${txid}`);
     } catch (error) {
-      console.log(error);
       setLoading(false);
     } finally {
       setLoading(false);
@@ -162,7 +158,6 @@ export function useTicket() {
     transaction.feePayer = anchorWallet.publicKey;
 
     const tx = await anchorWallet.signTransaction(transaction).catch((err) => {
-      console.log(err);
       throw new Error("User rejected the request.");
     });
 
