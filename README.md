@@ -4,15 +4,15 @@
   <h3>Reimagining Web3 Gaming.</h3>
 </div>
  
-# Whats 'Cade
+# Whats Cade
 
 Social gaming platform on @Solana providing a FUN GamEx, prizes, leaderboards, pfps, and a Developer SDK to plug into the platform.
 
 # Overview
 
-'Cade is a decentralized arcade platform, where blockchain-based games can function with a structured marketplace, rewards and social layer. In addition to providing our own games, we aim to provide a place for developers to self-publish their games and plug into our system, thereby providing distribution, incentives, and social with little effort on their end, allowing them to focus on creating awesome games for players to enjoy. The project is from the Q4 Artisan Cohort from WBA.
+Cade is a decentralized arcade platform, where blockchain-based games can function with a structured marketplace, rewards and social layer. In addition to providing our own games, we aim to provide a place for developers to self-publish their games and plug into our system, thereby providing distribution, incentives, and social with little effort on their end, allowing them to focus on creating awesome games for players to enjoy. The project is from the Q4 Artisan Cohort from WBA.
 
-# 'Cade Programs Repo
+# Cade Programs Repo
 
 Cade Mobile - https://github.com/Web3-Builders-Alliance/cade_mobile
 
