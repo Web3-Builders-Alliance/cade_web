@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/N6oQbzv.png">
+<img src="https://firebasestorage.googleapis.com/v0/b/zakibhai-82e1f.appspot.com/o/cadeweb.png?alt=media&token=0f4d9e61-69d8-46b1-a3d3-979cd711df68">
 <h1 align="center">'Cade</h1>
 <div align="center">
   <h3>Reimagining Web3 Gaming.</h3>
