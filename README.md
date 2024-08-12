@@ -32,8 +32,3 @@ Cade Unity-Games - https://github.com/Web3-Builders-Alliance/cade-unity-game
 <li>Points ,Prizes and Rewards</li>
 </ul>
 
-# PitchDeck And DemoVideo
-
-<ul>
-<li><a href="https://docs.google.com/presentation/d/15jDaBoUCIgDeViFjmpAaFZZ9jZCdeOZEwCEqQSRjFBo/edit?usp=sharing">Pitch Deck</a></li>
-<li><a href="https://www.youtube.com/watch?v=IrQuomKKppA">Demo Video</a></li>
